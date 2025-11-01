@@ -16,7 +16,7 @@ function Login(){
 
     const logar = async () => {
         try {
-            const res = await fetch("http://localhost:3000/usuarios/login", {
+            const res = await fetch("http://localhost:4000/usuarios/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(formulario),
@@ -32,7 +32,7 @@ function Login(){
         <>
             <form onSubmit={submeterUsuario}>
                 <input type="text" placeholder="usuario" name="usuario" value={formulario.usuario} onChange={controlaEstado} required/>
-                <input type="text" placeholder="senha" name="senha" value={formulario.senha} onChange={controlaEstado} required/>
+                <input type="password" placeholder="senha" name="senha" value={formulario.senha} onChange={controlaEstado} required/>
                 <button type="submit">Logar</button>
                 <Link to={"/cadastro"}>Não tem uma conta? Crie uma!</Link>
             </form>

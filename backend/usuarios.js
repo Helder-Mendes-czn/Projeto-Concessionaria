@@ -1,7 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const pool = require('../mySql2');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import pool from '../mySql2.js';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -28,31 +33,48 @@ app.post('/usuarios/cadastrar', async (req, res) => {
             return res.status(400).json({ mensagem: "As senhas não coincidem" });
         }
 
+        const senhaCriptografada = await bcrypt.hash(senha, 10);
+
         const sql = 'INSERT INTO usuario(nome, usuario, senha, tipo) VALUES (?, ?, ?, ?)';
-        await pool.execute(sql, [nome, usuario.toLowerCase(), senha, tipo]);
+        await pool.execute(sql, [nome, usuario.toLowerCase(), senhaCriptografada, tipo]);
 
         res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!" });
     } catch (error) {
-        console.error('Erro:', error);
-        res.status(500).json({ mensagem: "Erro interno no servidor" });
+        console.error("Erro ao fazer login:");
+        console.error(error);
+        res.status(500).json({ mensagem: error.message });
     }
 });
 
 app.post('/usuarios/login', async (req, res) => {
     try {
         const { usuario, senha } = req.body;
-        const [existeUsuario] = await pool.execute(`SELECT * FROM usuario WHERE LOWER(usuario) = "${usuario.toLowerCase()}"`);
-        if (existeUsuario.length > 0) {
-            if (existeUsuario[0].senha === senha) {
-                res.json({ mensagem: "Login feito com sucesso" })
-            } else {
-                res.json({ mensagem: "Senha incorreta" })
-            }
-        } else {
-            res.json({ mensagem: "Usuário não encontrado" })
+        const [usuarios] = await pool.execute(`SELECT * FROM usuario WHERE LOWER(usuario) = ?`, [usuario.toLowerCase()]);
+
+        if (usuarios.length === 0) {
+            return res.status(404).json({ mensagem: "Usuário não encontrado" });
         }
+
+        const usuarioEncontrado = usuarios[0];
+        const senhaCorreta = await bcrypt.compare(senha, usuarioEncontrado.senha);
+        if (!senhaCorreta) {
+            return res.status(401).json({ mensagem: "Senha incorreta" });
+        }
+
+        const token = jwt.sign(
+            { id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+
+
+        res.status(200).json({
+            mensagem: "Login realizado com sucesso!",
+            token
+        });
     } catch (error) {
-        console.error('erro: ', error)
+        console.error("Erro ao fazer login:", error);
+        res.status(500).json({ mensagem: "Erro interno no servidor" });
     }
 });
 
@@ -81,4 +103,4 @@ app.get('/usuarios', async (req, res) => {
     }
 })
 
-app.listen(3000, () => { console.log('servidor rodando na porta 3000') });
+app.listen(4000, () => { console.log('servidor rodando na porta 4000') });
