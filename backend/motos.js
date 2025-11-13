@@ -11,7 +11,7 @@ app.get('/motos/buscar', async (req, res) => {
     try {
         const filtros = req.query;
         const valores = [];
-        let sql = 'SELECT id,marca, modelo, ano FROM moto';
+        let sql = 'SELECT * FROM moto LIMIT 5';
 
         if (Object.keys(filtros).length > 0) {
             const condicoes = Object.entries(filtros).map(([chave, valor]) => {
@@ -31,18 +31,18 @@ app.get('/motos/buscar', async (req, res) => {
 app.post('/motos/cadastrar', async (req, res) => {
     try {
         const valores = req.body;
-        let sql = "INSERT INTO moto(marca, modelo, ano, tipo, cilindrada, motor, potencia, torque, taxa_compressao, diametro_curso, valvulas_por_cilindro, sistema_combustivel, comando_combustivel, ignicao, lubrificacao,refrigeracao, caixa_marchas, transmissao, embreagem, quadro, suspensao_dianteira, curso_roda_dianteira, suspensao_traseira, curso_roda_traseira, pneu_dianteiro, pneu_traseiro,freios_dianteiros, freios_traseiros, peso_total, altura_assento, altura_total, comprimento_total, largura_total, distancia_solo, entre_eixos, capacidade_combustivel, partida)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        let sql = "INSERT INTO moto(marca, modelo, ano, estilo, cilindrada, motor, potencia, torque, taxa_compressao, diametro_curso, valvulas_por_cilindro, sistema_combustivel, comando_combustivel, ignicao, lubrificacao,refrigeracao, caixa_marchas, transmissao, embreagem, quadro, suspensao_dianteira, curso_roda_dianteira, suspensao_traseira, curso_roda_traseira, pneu_dianteiro, pneu_traseiro,freios_dianteiros, freios_traseiros, peso_total, altura_assento, altura_total, comprimento_total, largura_total, distancia_solo, entre_eixos, capacidade_combustivel, partida)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         console.log(valores.ano);
 
-        if (valores.marca == undefined || valores.modelo == undefined || valores.ano == undefined || valores.tipo == undefined) {
-            return res.json({ mensagem: "marca, tipo, modelo e ano são atributos obrigatórios por favor registre" })
+        if (valores.marca == undefined || valores.modelo == undefined || valores.ano == undefined || valores.estilo == undefined) {
+            return res.json({ mensagem: "marca, estilo, modelo e ano são atributos obrigatórios por favor registre" })
         }
 
         await pool.execute(sql, [
             valores.marca,
             valores.modelo,
             valores.ano,
-            valores.tipo,
+            valores.estilo,
             valores.cilindrada || null,
             valores.motor || null,
             valores.potencia || null,

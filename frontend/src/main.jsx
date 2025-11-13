@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Cadastro from './components/Cadastro.jsx';
 import Login from './components/Login.jsx';
+import ContainerMotos from './components/ContainerMotos.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "motos",
+    element: <ContainerMotos />
   }
 ]);
 

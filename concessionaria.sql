@@ -96,6 +96,19 @@ CREATE TABLE IF NOT EXISTS mensagem (
     CONSTRAINT msg_fk_destinatario FOREIGN KEY (id_destinatario) REFERENCES usuario(id)
 );
 
+#DROP table traducao_moto;
+CREATE TABLE IF NOT EXISTS traducao_moto(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    campo VARCHAR(255) NOT NULL,         
+    valor_original VARCHAR(255) NOT NULL, 
+    idioma VARCHAR(10) NOT NULL,         
+    valor_traduzido VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE traducao_moto MODIFY valor_original TEXT NOT NULL;
+ALTER TABLE traducao_moto MODIFY valor_traduzido TEXT NOT NULL;
+
+
 #ALTER TABLE usuario ADD COLUMN tipo VARCHAR(40) CHECK (tipo IN ('Usuário Vendedor','Usuário Comum'));
 
 ALTER TABLE usuario
@@ -110,7 +123,13 @@ ADD COLUMN imagem_principal VARCHAR(255),
 ADD COLUMN status ENUM('disponível','vendida','em revisão') DEFAULT 'disponível',
 ADD CONSTRAINT moto_fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuario(id);
 
-SELECT id, usuario, senha FROM usuario;
+SELECT DISTINCT id, usuario, senha FROM usuario LIMIT 2;
+SELECT DISTINCT motor FROM moto;
+
+ALTER TABLE moto RENAME COLUMN tipo TO estilo;
+ALTER TABLE moto RENAME COLUMN sistema_combustivel TO alimentacao;
+
+
 
 UPDATE moto SET imagem_principal = 'https://www.autoevolution.com/images/moto_gallery/APRILIA-SMV-900-DORSODURO-14281_2.jpg' WHERE id = 1;
 UPDATE moto SET imagem_principal = 'https://cdn.motochecker.at/motorrad/aprilia-rs-125-2022-0.png' WHERE id =2;
