@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login(){
     const [formulario, setFormulario] = useState({usuario: "", senha: ""});
+    const navigate = useNavigate();
 
     const controlaEstado = (elemento) => {
         const {name, value} = elemento.target;
@@ -21,8 +22,15 @@ function Login(){
                 headers: { "Content-Type": "application/json"},
                 body: JSON.stringify(formulario),
             });
+
             const resultado = await res.json();
             alert(resultado.mensagem);
+
+            if (resultado.token) {
+                localStorage.setItem("token", resultado.token);
+                navigate("/"); 
+            }
+
         } catch (error) {
             console.error("erro: ", error);
         }

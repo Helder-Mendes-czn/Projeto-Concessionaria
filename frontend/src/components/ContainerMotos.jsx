@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ContainerMotos() {
     const [anuncios, setAnuncios] = useState([]);
@@ -8,7 +9,10 @@ function ContainerMotos() {
             const res = await fetch("http://localhost:8002/anuncios/buscar");
             const data = await res.json();
             setAnuncios(data);
-            console.log(data)
+            // console.log("Anuncios existentes:")
+            // data.forEach(moto => {
+            //     console.log(`\tid_anuncio: ${moto.id_anuncio},\n\tmarca:${moto.marca},\n\tmodelo: ${moto.modelo},\n\tfreios_dianteiros: ${moto.freios_dianteiros},\n\tfreios_traseiros: ${moto.freios_traseiros}`)
+            // });
         } catch (error) {
             console.error("erro: \n", error);
         }
@@ -56,7 +60,7 @@ function ContainerMotos() {
 
         Object.entries(filtros).forEach(([key, value]) => {
             if (Array.isArray(value) && value.length > 0) {
-                params.append(key, value.join(","));
+                value.forEach(v => params.append(key, v));
             } else if (value) {
                 params.append(key, value);
             }
@@ -65,6 +69,11 @@ function ContainerMotos() {
         const res = await fetch(`http://localhost:8002/anuncios/buscar?${params.toString()}`);
         const data = await res.json();
         setAnuncios(data);
+        // console.log("Anuncios filtrados:")
+        // console.log("com os filtros", filtros)
+        // data.forEach(moto => {
+        //     console.log(`\tid_anuncio: ${moto.id_anuncio},\n\tmarca:${moto.marca},\n\tmodelo: ${moto.modelo},\n\tfreios_dianteiros: ${moto.freios_dianteiros},\n\tfreios_traseiros: ${moto.freios_traseiros}`)
+        // });
     };
 
     return (
@@ -74,11 +83,11 @@ function ContainerMotos() {
                     Motos Helder
                 </div>
                 <div>
-                    <input type="text" placeholder="busque por marca ou modelo" />
+                    <input type="text" placeholder="busque por marca ou modelo" name="marca" value={filtros.marca} onChange={controlaEstado}/>
                 </div>
                 <div>
                     <div>
-                        <i class="fa-solid fa-circle-user"></i>
+                        <i className="fa-solid fa-circle-user"></i>
                         <h6>Helder Mendes</h6>
                     </div>
                     ❤️
@@ -254,8 +263,8 @@ function ContainerMotos() {
                     </div>
                     <div>
                         <div>
-                            <input type="text" name="cilindra_min" value={filtros.cilindrada_min} onChange={controlaEstado} placeholder="Cilindradas mínima" />
-                            <input type="text" name="cilindra_max" value={filtros.cilindrada_max} onChange={controlaEstado} placeholder="Cilindradas máxima" />
+                            <input type="text" name="cilindrada_min" value={filtros.cilindrada_min} onChange={controlaEstado} placeholder="Cilindradas mínima" />
+                            <input type="text" name="cilindrada_max" value={filtros.cilindrada_max} onChange={controlaEstado} placeholder="Cilindradas máxima" />
                         </div>
                     </div>
                 </div>
@@ -369,7 +378,7 @@ function ContainerMotos() {
                             <label><input type="checkbox" value="Eletric" checked={filtros.estilo.includes("Eletric")} onChange={(e) => controlaCheckbox(e, "estilo")} /> Elétrica</label>
                             <label><input type="checkbox" value="Sport" checked={filtros.estilo.includes("Sport")} onChange={(e) => controlaCheckbox(e, "estilo")} /> Esportiva</label>
                             <label><input type="checkbox" value="Naked" checked={filtros.estilo.includes("Naked")} onChange={(e) => controlaCheckbox(e, "estilo")} /> Naked</label>
-                            <label><input type="checkbox" value="offroad" checked={filtros.estilo.includes("offroad")} onChange={(e) => controlaCheckbox(e, "estilo")}/>OffRoad</label>
+                            <label><input type="checkbox" value="offroad" checked={filtros.estilo.includes("offroad")} onChange={(e) => controlaCheckbox(e, "estilo")} />OffRoad</label>
                             <label><input type="checkbox" value="Quadriciclo" checked={filtros.estilo.includes("Quadriciclo")} onChange={(e) => controlaCheckbox(e, "estilo")} /> Quadriciclo</label>
                             <label><input type="checkbox" value="Scooter" checked={filtros.estilo.includes("Scooter")} onChange={(e) => controlaCheckbox(e, "estilo")} /> Scooter</label>
                             <label><input type="checkbox" value="Street" checked={filtros.estilo.includes("Street")} onChange={(e) => controlaCheckbox(e, "estilo")} />Street</label>
@@ -408,7 +417,7 @@ function ContainerMotos() {
                             </div>
                         </div>
                         <div>
-                            <button>Ver anúncio</button>
+                            <Link  to={`/moto/${moto.id_anuncio}`}>Ver anuncio</Link>
                         </div>
                     </div>
                 ))}

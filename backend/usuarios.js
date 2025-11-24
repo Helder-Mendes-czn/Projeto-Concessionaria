@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.post('/usuarios/cadastrar', async (req, res) => {
     try {
-        const { nome, usuario, senha, confirmaSenha, tipo } = req.body;
+        const { nome, usuario, email, telefone, senha, confirmaSenha, tipo } = req.body;
 
         const [existeUsuario] = await pool.execute(
             `SELECT * FROM usuario WHERE LOWER(usuario) = ?`,
@@ -35,8 +35,8 @@ app.post('/usuarios/cadastrar', async (req, res) => {
 
         const senhaCriptografada = await bcrypt.hash(senha, 10);
 
-        const sql = 'INSERT INTO usuario(nome, usuario, senha, tipo) VALUES (?, ?, ?, ?)';
-        await pool.execute(sql, [nome, usuario.toLowerCase(), senhaCriptografada, tipo]);
+        const sql = 'INSERT INTO usuario(nome, usuario, email, telefone, senha, tipo) VALUES (?, ?, ?, ?, ?, ?)';
+        await pool.execute(sql, [nome, usuario.toLowerCase(), email, telefone, senhaCriptografada, tipo]);
 
         res.status(201).json({ mensagem: "Usuário cadastrado com sucesso!" });
     } catch (error) {
@@ -62,9 +62,9 @@ app.post('/usuarios/login', async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario },
+            { id: usuarioEncontrado.id, usuario: usuarioEncontrado.usuario, tipo: usuarioEncontrado.tipo },
             process.env.JWT_SECRET,
-            { expiresIn: "1h" }
+            { expiresIn: "3h" }
         );
 
 

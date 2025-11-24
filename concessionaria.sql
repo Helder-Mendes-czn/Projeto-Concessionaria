@@ -64,13 +64,14 @@ CREATE TABLE IF NOT EXISTS anuncio(
 	CONSTRAINT anuncio_fk_moto FOREIGN KEY (id_moto) REFERENCES moto(id)
 );
 
+drop table garagem;
 CREATE TABLE garagem(
 	id_usuario INT,
-    id_moto INT,
+    id_anuncio INT,
     data_adicao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT garagem_fk_usuario FOREIGN KEY (id_usuario) REFERENCES usuario(id),
-	CONSTRAINT garagem_fk_moto FOREIGN KEY (id_moto) REFERENCES moto(id),
-    PRIMARY KEY (id_usuario, id_moto)
+	CONSTRAINT garagem_fk_moto FOREIGN KEY (id_anuncio) REFERENCES anuncio(id),
+    PRIMARY KEY (id_usuario, id_anuncio)
 );
 
 CREATE TABLE IF NOT EXISTS pedido (
@@ -90,6 +91,7 @@ CREATE TABLE IF NOT EXISTS mensagem (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_remetente INT,
     id_destinatario INT,
+    id_anuncio INT,
     conteudo TEXT,
     data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT msg_fk_remetente FOREIGN KEY (id_remetente) REFERENCES usuario(id),
@@ -109,7 +111,7 @@ ALTER TABLE traducao_moto MODIFY valor_original TEXT NOT NULL;
 ALTER TABLE traducao_moto MODIFY valor_traduzido TEXT NOT NULL;
 
 
-#ALTER TABLE usuario ADD COLUMN tipo VARCHAR(40) CHECK (tipo IN ('Usuário Vendedor','Usuário Comum'));
+#ALTER TABLE usuario MODIFY COLUMN tipo VARCHAR(255) CHECK (tipo IN ('Loja','Pessoa Física'));
 
 ALTER TABLE usuario
 ADD COLUMN email VARCHAR(100) UNIQUE,
@@ -122,14 +124,17 @@ ALTER TABLE moto
 ADD COLUMN imagem_principal VARCHAR(255),
 ADD COLUMN status ENUM('disponível','vendida','em revisão') DEFAULT 'disponível',
 ADD CONSTRAINT moto_fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuario(id);
+ALTER TABLE moto ADD COLUMN quilometragem VARCHAR(255);
 
-SELECT DISTINCT id, usuario, senha FROM usuario LIMIT 2;
-SELECT DISTINCT motor FROM moto;
+SELECT DISTINCT * FROM usuario;
+SELECT DISTINCT * FROM moto LIMIT 7;
+SELECT id, CONCAT('[', motor, ']') AS motor FROM moto;
 
 ALTER TABLE moto RENAME COLUMN tipo TO estilo;
 ALTER TABLE moto RENAME COLUMN sistema_combustivel TO alimentacao;
+SHOW COLUMNS FROM moto;
 
-
+ALTER TABLE moto ADD COLUMN cor_principal VARCHAR(255), ADD COLUMN cor_secundaria VARCHAR(255);
 
 UPDATE moto SET imagem_principal = 'https://www.autoevolution.com/images/moto_gallery/APRILIA-SMV-900-DORSODURO-14281_2.jpg' WHERE id = 1;
 UPDATE moto SET imagem_principal = 'https://cdn.motochecker.at/motorrad/aprilia-rs-125-2022-0.png' WHERE id =2;

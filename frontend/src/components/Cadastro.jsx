@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Cadastro() {
-    const [formulario, setFormulario] = useState({ nome: "", usuario: "", senha: "", confirmaSenha: "", tipo: "" })
+    const [formulario, setFormulario] = useState({ nome: "", usuario: "", email: "", telefone: "", senha: "", confirmaSenha: "", tipo: "" })
 
     const controlaEstado = (elemento) => {
         const { name, value } = elemento.target;
@@ -32,13 +32,15 @@ function Cadastro() {
             <form onSubmit={submeterUsuario}>
                 <select name="tipo" value={formulario.tipo} onChange={controlaEstado} required>
                     <option value="" disabled hidden>Selecione o tipo de usuário</option>
-                    <option value="Usuário Comum">Usuário Comum</option> 
-                    <option value="Usuário Vendedor">Usuário Vendedor</option> 
+                    <option value="Usuário Comum">Usuário Comum</option>
+                    <option value="Usuário Vendedor">Usuário Vendedor</option>
                 </select>
-                <input type="text" name="nome" value={formulario.nome} placeholder="Nome de exibição" onChange={controlaEstado}  required/>
-                <input type="text" name="usuario" value={formulario.usuario} placeholder="usuario" onChange={controlaEstado}  required/>
-                <input type="password" name="senha" value={formulario.senha} placeholder="senha" onChange={controlaEstado}  required/>
-                <input type="password" name="confirmaSenha" value={formulario.confirmaSenha} placeholder="confirmar a Senha" onChange={controlaEstado}  required/>
+                <input type="text" name="nome" value={formulario.nome} placeholder="Nome de exibição" onChange={controlaEstado} required />
+                <input type="text" name="usuario" value={formulario.usuario} placeholder="usuario" onChange={controlaEstado} required />
+                <input type="email" name="email" value={formulario.email} placeholder="email" onChange={controlaEstado} required />
+                <input type="text" name="telefone" value={formulario.telefone} placeholder="telefone" onChange={controlaEstado} />
+                <input type="password" name="senha" value={formulario.senha} placeholder="senha" onChange={controlaEstado} required />
+                <input type="password" name="confirmaSenha" value={formulario.confirmaSenha} placeholder="confirmar a Senha" onChange={controlaEstado} required />
                 <button type="submit">Cadastrar</button>
                 <Link to={"/login"}>Já possui uma conta? Logue!</Link>
             </form>

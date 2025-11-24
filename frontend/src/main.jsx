@@ -6,6 +6,11 @@ import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import Cadastro from './components/Cadastro.jsx';
 import Login from './components/Login.jsx';
 import ContainerMotos from './components/ContainerMotos.jsx';
+import AnuncioMoto from './components/AnuncioMoto.jsx';
+import VenderMotoRoutes from './routes/VenderMotoRoutes.jsx';
+import { pegarUsuarioLogado } from './helper/auth.js';
+
+const usuario = pegarUsuarioLogado();
 
 const router = createBrowserRouter([
   {
@@ -21,8 +26,16 @@ const router = createBrowserRouter([
     element: <Login />
   },
   {
-    path: "motos",
+    path: "/anuncios",
     element: <ContainerMotos />
+  },
+  {
+    path: "/moto/:id",
+    element: <AnuncioMoto />
+  },
+  {
+    path: "/anuncios/venderMoto/*",
+    element: <VenderMotoRoutes usuario={usuario} />,
   }
 ]);
 
