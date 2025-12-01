@@ -94,6 +94,45 @@ app.delete('/usuarios/deletar', async (req, res) => {
     }
 })
 
+app.put('/usuarios/editar/:id', async (req, res) => {
+    const idUsuario = req.params.id;
+    const novosValores = req.body;
+
+    if (Object.keys(novosValores).length === 0){
+        return res.status(400).json({ mensagem: "Nenhum dado para atualização fornecido." });
+    }
+
+    try {
+        const camposParaAtualizar = [];
+        const valores = [];
+
+        for (const [chave, valor] of Object.entries(novosValores)){
+            if (chave === 'id') continue;
+            if (chave === 'data_criacao') continue;
+            camposParaAtualizar.push(`${chave} = ?`);
+            valores.push(valor);
+        }
+
+        if (camposParaAtualizar.length === 0) {
+            return res.status(400).json({ mensagem: "Nenhum campo válido fornecido para atualização." });
+        }
+
+        const sql = `UPDATE usuario SET ${camposParaAtualizar.join(', ')} WHERE id = ?`;
+        valores.push(idUsuario);
+        const [resultado] = await pool.execute(sql, valores);
+
+        if (resultado.affectedRows === 0) {
+            return res.status(404).json({ mensagem: `Usuário com ID ${idUsuario} não encontrado para atualização ou nenhum dado foi alterado.` });
+        }
+
+        res.json({ 
+            mensagem: `Usuário com ID ${idUsuario} atualizado com sucesso.`, linhasAfetadas: resultado.affectedRows 
+        });
+    } catch (error) {
+        console.error("Erro ao editar usuario: ", error);
+    }
+})
+
 app.get('/usuarios', async (req, res) => {
     try {
         const [resultado] = await pool.execute('SELECT * FROM usuario');
@@ -102,5 +141,15 @@ app.get('/usuarios', async (req, res) => {
         console.error('erro: ', error);
     }
 })
+
+app.get('/usuarios/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const [resultado] = await pool.execute("SELECT * FROM usuario WHERE id = ?",[id]);
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error("Erro:", error);
+    }
+});
 
 app.listen(4000, () => { console.log('servidor rodando na porta 4000') });

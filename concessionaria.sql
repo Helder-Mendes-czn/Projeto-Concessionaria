@@ -98,7 +98,6 @@ CREATE TABLE IF NOT EXISTS mensagem (
     CONSTRAINT msg_fk_destinatario FOREIGN KEY (id_destinatario) REFERENCES usuario(id)
 );
 
-#DROP table traducao_moto;
 CREATE TABLE IF NOT EXISTS traducao_moto(
     id INT AUTO_INCREMENT PRIMARY KEY,
     campo VARCHAR(255) NOT NULL,         
@@ -107,11 +106,17 @@ CREATE TABLE IF NOT EXISTS traducao_moto(
     valor_traduzido VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS moto_imagens(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	id_moto INT,
+	imagem VARCHAR(255),
+	FOREIGN KEY (id_moto) REFERENCES moto(id)
+);
+SELECT imagem FROM moto_imagens WHERE id_moto = 1201;
+SELECT a.id AS id_anuncio, mi.imagem, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM garagem g JOIN anuncio a ON g.id_anuncio = a.id JOIN moto m ON m.id = a.id_moto JOIN moto_imagens mi ON m.id = mi.id_moto WHERE g.id_usuario = 7;
+
 ALTER TABLE traducao_moto MODIFY valor_original TEXT NOT NULL;
 ALTER TABLE traducao_moto MODIFY valor_traduzido TEXT NOT NULL;
-
-
-#ALTER TABLE usuario MODIFY COLUMN tipo VARCHAR(255) CHECK (tipo IN ('Loja','Pessoa Física'));
 
 ALTER TABLE usuario
 ADD COLUMN email VARCHAR(100) UNIQUE,
@@ -119,22 +124,62 @@ ADD COLUMN telefone VARCHAR(20),
 MODIFY COLUMN senha VARCHAR(255),
 ADD COLUMN data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN status ENUM('ativo','inativo') DEFAULT 'ativo';
-
+ALTER TABLE usuario ADD COLUMN vasco INT;
+ALTER TABLE usuario drop COLUMN vasco;
 ALTER TABLE moto
 ADD COLUMN imagem_principal VARCHAR(255),
 ADD COLUMN status ENUM('disponível','vendida','em revisão') DEFAULT 'disponível',
 ADD CONSTRAINT moto_fk_vendedor FOREIGN KEY (id_vendedor) REFERENCES usuario(id);
 ALTER TABLE moto ADD COLUMN quilometragem VARCHAR(255);
-
-SELECT DISTINCT * FROM usuario;
-SELECT DISTINCT * FROM moto LIMIT 7;
-SELECT id, CONCAT('[', motor, ']') AS motor FROM moto;
-
+alter table moto add column ano_fabricacao VARCHAR(255), ADD column ano_modelo VARCHAR(255);
 ALTER TABLE moto RENAME COLUMN tipo TO estilo;
 ALTER TABLE moto RENAME COLUMN sistema_combustivel TO alimentacao;
-SHOW COLUMNS FROM moto;
-
+ALTER TABLE moto RENAME COLUMN id_vendedor TO id_usuario;
 ALTER TABLE moto ADD COLUMN cor_principal VARCHAR(255), ADD COLUMN cor_secundaria VARCHAR(255);
+ALTER TABLE moto ADD column freios VARCHAR(255);
+ALTER TABLE anuncio
+DROP FOREIGN KEY anuncio_fk_moto;
+
+-- 2. Adiciona a nova chave estrangeira com ON DELETE CASCADE
+ALTER TABLE anuncio
+ADD CONSTRAINT anuncio_fk_moto
+FOREIGN KEY (id_moto)
+REFERENCES moto(id)
+ON DELETE CASCADE;
+
+-- 1. Remove a chave estrangeira existente (sem CASCADE)
+ALTER TABLE garagem
+DROP FOREIGN KEY garagem_fk_moto;
+
+-- 2. Adiciona a nova chave estrangeira com ON DELETE CASCADE
+ALTER TABLE garagem
+ADD CONSTRAINT garagem_fk_moto
+FOREIGN KEY (id_anuncio)
+REFERENCES anuncio(id)
+ON DELETE CASCADE;
+
+SELECT a.id AS id_anuncio, m.id AS id_moto, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM anuncio a JOIN moto m ON a.id_moto = m.id ORDER BY a.data_publicacao DESC;
+DESCRIBE moto;
+SHOW COLUMNS FROM moto;
+SHOW COLUMNS FROM anuncio;
+SHOW COLUMNS FROM usuario;
+select * from anuncio;
+select distinct refrigeracao from moto;
+select * from garagem;
+select * from anuncio a join garagem g on a.id = g.id_anuncio;
+delete from garagem where id_anuncio = 2;
+select * from moto where id = 1201;
+select imagem from moto_imagens where id_moto = 1201;
+select * from usuario where id = 7;
+select distinct estilo from moto;
+delete from anuncio where id = 1;
+SELECT DISTINCT * FROM usuario;
+SELECT id, modelo, marca, ano FROM moto WHERE marca LIKE "yamaha";
+SELECT id, CONCAT('[', motor, ']') AS motor FROM moto;
+SELECT a.id AS id_anuncio, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM GARAGEM g JOIN anuncio a ON g.id_anuncio = a.id JOIN moto m ON m.id = a.id_moto WHERE g.id_usuario = u.id;
+SELECT a.id AS id_anuncio, m.id AS id_moto, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM garagem g LEFT JOIN anuncio a ON g.id_anuncio = a.id JOIN moto m ON m.id = a.id_moto WHERE g.id_usuario = 7;
+SELECT a.id AS id_anuncio, m.id AS id_moto, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM anuncio a JOIN usuario u ON a.id_usuario = u.id JOIN moto m ON a.id_moto = m.id ORDER BY a.data_publicacao DESC; 
+
 
 UPDATE moto SET imagem_principal = 'https://www.autoevolution.com/images/moto_gallery/APRILIA-SMV-900-DORSODURO-14281_2.jpg' WHERE id = 1;
 UPDATE moto SET imagem_principal = 'https://cdn.motochecker.at/motorrad/aprilia-rs-125-2022-0.png' WHERE id =2;

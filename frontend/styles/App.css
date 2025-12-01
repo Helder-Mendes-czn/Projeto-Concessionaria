@@ -1,0 +1,348 @@
+/* ========================= */
+/*        VARIÁVEIS          */
+/* ========================= */
+
+:root {
+  --branco: #FFFFFF;
+
+  --azul-1: #0A84FF;   /* Azul vibrante / destaque */
+  --azul-2: #0066CC;   /* Azul forte / botões */
+  --azul-3: #004C99;   /* Azul médio */
+  --azul-4: #003366;   /* Azul profundo / bordas */
+
+  --preto: #0f0f0f;
+  --cinza-1: #202124;
+  --cinza-2: #292929;
+
+  --fonte-principal: "Inter", sans-serif;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fonte-principal);
+}
+
+/* ========================= */
+/*         NAVBAR            */
+/* ========================= */
+
+.navApp {
+  width: 100%;
+  background: var(--cinza-1);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid var(--azul-4);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.divNavApp {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.navApp a {
+  text-decoration: none;
+  color: var(--branco);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: .3s ease-in-out;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+}
+
+.navApp a:hover {
+  color: var(--azul-1);
+  /* transform:scale(1.02); */
+  transition: .3s ease-in-out;
+}
+
+/* Logo */
+
+.divLogoApp {
+  gap: .2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--branco);
+  transition: .3s ease-in-out;
+}
+
+.divLogoApp:hover {
+  color: var(--azul-1);
+  /* transform: scale(1.02); */
+  transition: .3s ease-in-out;
+}
+
+/* Icone e nome do usuário */
+
+.navApp i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.divNavApp > .linkNavUser{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .2rem;
+}
+
+.navApp h4 {
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-left: 0.3rem;
+}
+
+/* ========================= */
+/*         MAIN              */
+/* ========================= */
+
+.containerMainApp {
+  padding: 1rem;
+  min-height: 75.8vh;
+  animation: fadeIn .4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================= */
+/*         FOOTER            */
+/* ========================= */
+
+footer {
+  padding: 1rem;
+  background: var(--cinza-1);
+  border-top: 2px solid var(--azul-4);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.divFooterApp {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  gap: 20rem;
+}
+
+footer h3 {
+  color: var(--branco);
+}
+
+footer h3 span{
+  color: var(--azul-1);
+}
+
+footer a {
+  color: var(--branco);
+  text-decoration: none;
+  transition: .3s;
+  font-size: 1rem;
+}
+
+footer a:hover {
+  color: var(--azul-1);
+}
+
+.divFooterContatosApp {
+  margin-top: .8rem;
+}
+
+.divNavAppLinks {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: .6rem;
+}
+
+.divNavAppLinks i {
+  font-size: 1.8rem;
+  transition: .3s ease;
+}
+
+.divNavAppLinks i:hover {
+  color: var(--azul-1);
+  transform: scale(1.15);
+}
+
+/* Links adicionais no rodapé */
+.divFooterLinks{
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.divFooterLinks h3{
+  color: var(--azul-1);
+}
+
+.divFooterLinks > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.divFooterLinks > div > div{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.linkPerfil{
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: .2rem;
+}
+
+footer h4 {
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* ========================= */
+/*      INTERAÇÕES EXTRA     */
+/* ========================= */
+
+a, .divLogoApp, i {
+  cursor: pointer;
+}
+
+a:active, i:active {
+  transform: scale(0.95);
+}
+
+/* ========================= */
+/*        MOBILE FIRST        */
+/* ========================= */
+
+/* Celulares até 480px */
+@media (max-width: 480px) {
+
+  /* NAVBAR */
+  .navApp {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .divNavApp {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .divLogoApp {
+    font-size: 1.3rem;
+  }
+
+  .navApp a {
+    padding: 0.5rem 0.8rem;
+    width: 90%;
+    background: var(--cinza-2);
+    border-radius: 0.5rem;
+  }
+
+  .navApp a:hover {
+    transform: none;
+  }
+
+  .navApp i {
+    font-size: 1.3rem;
+  }
+
+  .navApp h4 {
+    font-size: 0.9rem;
+  }
+
+  /* MAIN */
+  .containerMainApp {
+    padding: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 1rem;
+  }
+
+  .divFooterApp {
+    text-align: center;
+    align-items: center;
+  }
+
+  .divNavAppLinks {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  footer > div:nth-child(2) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  footer a {
+    width: 100%;
+    display: inline-block;
+    padding: 0.5rem 0;
+  }
+}
+
+
+/* ========================= */
+/*        TABLETS            */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .navApp {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .divNavApp {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .navApp a {
+    font-size: 1rem;
+  }
+
+  .divLogoApp {
+    font-size: 1.5rem;
+  }
+
+  .containerMainApp {
+    padding: 1.8rem 1rem;
+  }
+
+  footer {
+    padding: 2rem 1rem;
+  }
+
+  footer > div:nth-child(2) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+

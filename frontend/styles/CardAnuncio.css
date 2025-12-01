@@ -1,0 +1,152 @@
+/* ======================= */
+/*   GRID DOS ANÚNCIOS     */
+/* ======================= */
+
+.container-card-anuncio {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 25px;
+    padding: 20px;
+}
+
+/* ======================= */
+/*        CARD             */
+/* ======================= */
+
+.card-anuncio {
+    background: var(--cinza-1);
+    border: 1px solid var(--azul-4);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease;
+    cursor: pointer;
+}
+
+.card-anuncio:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 22px rgba(10, 132, 255, 0.3);
+}
+
+/* ======================= */
+/*        IMAGEM           */
+/* ======================= */
+
+.card-img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    background: var(--cinza-2);
+    transition: filter .3s ease;
+}
+
+.card-anuncio:hover .card-img {
+    filter: brightness(1.15);
+}
+
+/* ======================= */
+/*      INFORMAÇÕES        */
+/* ======================= */
+
+.card-info {
+    padding: 16px;
+    color: var(--branco);
+    font-family: var(--fonte-principal);
+    flex-grow: 1;
+}
+
+.card-topo {
+    margin-bottom: 10px;
+}
+
+.card-titulo {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    color: var(--branco);
+    margin-bottom: 8px;
+}
+
+/* ======================= */
+/*     DETALHES DO CARD    */
+/* ======================= */
+
+.card-detalhes {
+    margin-top: 10px;
+}
+
+.card-linha {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.card-linha h3 {
+    font-size: .95rem;
+    color: var(--azul-1);
+}
+
+.card-local h3 {
+    font-size: .9rem;
+    color: var(--branco);
+    opacity: 0.8;
+}
+
+/* ======================= */
+/*         PREÇO           */
+/* ======================= */
+
+.card-preco h3 {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    color: var(--azul-1);
+    font-weight: 600;
+}
+
+/* ======================= */
+/*       BOTÃO LINK        */
+/* ======================= */
+
+.card-botao {
+    margin: 1rem auto;
+    display: block;
+    text-align: center;
+    background: var(--azul-2);
+    color: var(--branco);
+    padding: 12px 0;
+    border-radius: .4rem;
+    font-family: var(--fonte-principal);
+    width: 70%;
+    font-size: 1rem;
+    text-decoration: none;
+    border-top: 1px solid var(--azul-3);
+    transition: background .25s ease, transform .25s ease;
+}
+
+.card-botao:hover {
+    background: var(--azul-1);
+    transform: scale(1.02);
+}
+
+.card-botao:active {
+    background: var(--azul-3);
+    transform: scale(.97);
+}
+
+/* ======================= */
+/*       RESPONSIVO        */
+/* ======================= */
+
+@media (max-width: 480px) {
+    .card-img {
+        height: 150px;
+    }
+
+    .card-titulo {
+        font-size: 1.1rem;
+    }
+
+    .card-preco h3 {
+        font-size: 1.1rem;
+    }
+}

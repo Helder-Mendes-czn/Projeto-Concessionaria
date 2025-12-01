@@ -1,0 +1,448 @@
+/* ========== CONTAINER GERAL ========== */
+.filtrosMoto { 
+    width: 400px;
+    background: var(--cinza-1); 
+    height: 100%; 
+    padding: 18px; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35); 
+    display: flex; flex-direction: column; 
+    gap: 26px; 
+    position: sticky; 
+    top: 20px; 
+    font-family: var(--fonte-principal); 
+    color: var(--branco); 
+}
+
+/* TITULO */
+.tituloFiltros {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--azul-1);
+}
+
+.filtrosBtns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.filtrosBtns>button {
+    width: 170px;
+}
+
+/* BOTÃO DE LIMPAR */
+.filtrosMoto>div>button {
+    background: var(--azul-2);
+    border: none;
+    padding: 12px;
+    color: var(--branco);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.filtrosMoto>div>button:hover {
+    background: var(--azul-1);
+    transform: translateY(-2px);
+}
+
+/* ========== INPUTS ========== */
+.filtrosMoto input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--azul-4);
+    background: var(--cinza-2);
+    color: var(--branco);
+    outline: none;
+    transition: border 0.25s ease;
+}
+
+.filtrosMoto input[type="text"]:focus {
+    border-color: var(--azul-1);
+}
+
+.filtroLinhaInputs {
+    display: flex;
+    gap: 12px;
+    margin: 10px 0 18px;
+}
+
+.filtroLinhaInputs input {
+    flex: 1;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25);
+    transition: box-shadow 0.25s ease;
+}
+
+.filtroLinhaInputs input:focus {
+    box-shadow: 0 0 6px var(--azul-1);
+}
+
+.filtrosLocalizacao h4 {
+    margin-bottom: .5rem;
+}
+
+/* ========== SESSÕES ABRIR / FECHAR ========== */
+
+.filtroSessao {
+    background: var(--cinza-2);
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--azul-4);
+}
+
+/* Cabeçalho clicável */
+.filtroSessao>.headerSessao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.headerSessao h4 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.headerSessao i {
+    color: var(--azul-1);
+    transition: transform 0.35s ease;
+}
+
+/* Conteúdo ocultável */
+.filtroConteudo {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition:
+        max-height 0.45s ease,
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+/* Quando aberto */
+.filtroSessao.aberto .filtroConteudo {
+    margin-top: 10px;
+    max-height: 400px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Rotação da seta ao abrir */
+.filtroSessao.aberto .headerSessao i {
+    transform: rotate(180deg);
+}
+
+.gridMarcas {
+    display: grid;
+    margin-left: -2px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.headerSessaoFiltrosMarca {
+    margin-top: 1rem;
+}
+
+.filtrosMarcaBtn {
+    width: 105px;
+    height: 105px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--cinza-1);
+    border: 1px solid var(--azul-4);
+    cursor: pointer;
+    transition: 0.25s ease;
+    text-align: center;
+    font-size: .8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.filtrosMarcaBtn img {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+}
+
+.filtrosMarcaBtn:hover {
+    background: var(--azul-4);
+}
+
+/* ========== LISTA EXPANDIDA DE MARCAS ========== */
+
+.filtrosMarcaColuna {
+    background: var(--cinza-1);
+    border: 1px solid var(--azul-4);
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* Nome + ícone dentro da lista */
+.filtrosMarcaColuna div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Scroll da lista */
+.filtrosMarcaColunaLista {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 8px;
+    padding-right: 4px;
+}
+
+.filtrosMarcaColunaLista ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.filtrosMarcaColunaLista li {
+    padding: 6px 0;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.2s ease;
+}
+
+.filtrosMarcaColunaLista li:hover {
+    background: var(--azul-4);
+}
+
+/* ========== BOTÕES AUXILIARES ========== */
+.filtrosBtnsAux {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filtrosBtnAux {
+    flex: 1 1 calc(33.33% - 8px);
+    text-align: center;
+    background: var(--cinza-1);
+    padding: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid var(--azul-4);
+    transition: 0.25s ease;
+    user-select: none;
+}
+
+.filtrosBtnAux:hover {
+    background: var(--azul-3);
+}
+
+.checkboxLinha {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.checkboxLinha label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.checkboxLinha input[type="checkbox"] {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* ========== CHECKBOXES ========== */
+.filtrosMoto label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+*{
+    overflow-y: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+
+/* ========== MOBILE ========== */
+@media (max-width: 768px) {
+    .filtrosMoto {
+        max-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 16px 12px;
+        gap: 22px;
+        position: static;
+    }
+
+    .tituloFiltros {
+        font-size: 18px;
+    }
+
+    .filtosMarcaBtn img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .filtrosBtnAux {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}
+
+.listaAnuncios {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 3rem 1.8rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: var(--cinza-1);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+
+
+/* ====== CARD ====== */
+.cardMoto {
+    display: flex;
+    flex-direction: column;
+    background: var(--cinza-1);
+    border: 1px solid var(--azul-4);
+    border-radius: 14px;
+    padding: 0px 0px 14px;
+    /* gap: .7rem; */
+    align-items: center;
+    justify-content: space-between;
+    justify-content: start;
+    width: 100%;
+    max-width: 430px;
+    max-height: 520px; 
+    transition: 0.25s ease;
+}
+
+.cardMoto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px #1e00ff7d;
+}
+
+.tituloCardMoto {
+    margin-bottom: 10px;
+    text-align: start;
+    text-transform: uppercase;
+}
+
+/* ====== Imagem ====== */
+.cardMoto img {
+    width: 100%;
+    height: 310px;
+    border-radius: 12px 12px 0px 0px;
+    object-fit: cover;
+    background: #000;
+}
+
+/* ====== Informações ====== */
+.cardInfo {
+    width: 100%;
+    padding: .3rem 1rem 0rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    flex-grow: 1;
+}
+
+/* ===== Detalhes ===== */
+.descricaoCardMoto {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    flex-wrap: wrap;
+    color: #89aaff;
+}
+
+.descricaoCardMoto1{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ===== Preço ===== */
+.precoCardMoto h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--azul-1);
+}
+
+/* Botão */
+.cardMoto a {
+    text-decoration: none;
+    background: var(--azul-2);
+    width: 200px;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: var(--branco);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: 0.25s ease;
+}
+
+.cardMoto a:hover {
+    background: var(--azul-1);
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 768px) {
+
+    .cardMoto {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .cardMoto img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .cardMoto a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .listaAnuncios {
+        max-width: 100%;
+    }
+}
+
+.containerLista {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    /* filtros + lista */
+    gap: 24px;
+}
+

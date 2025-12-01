@@ -29,20 +29,86 @@ function Cadastro() {
 
     return (
         <>
-            <form onSubmit={submeterUsuario}>
-                <select name="tipo" value={formulario.tipo} onChange={controlaEstado} required>
+            <form className="cadastroUsuario-form" onSubmit={submeterUsuario}>
+
+                <h2 className="cadastroUsuario-titulo">Criar conta</h2>
+
+                <select
+                    name="tipo"
+                    value={formulario.tipo}
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-select"
+                >
                     <option value="" disabled hidden>Selecione o tipo de usuário</option>
                     <option value="Usuário Comum">Usuário Comum</option>
                     <option value="Usuário Vendedor">Usuário Vendedor</option>
                 </select>
-                <input type="text" name="nome" value={formulario.nome} placeholder="Nome de exibição" onChange={controlaEstado} required />
-                <input type="text" name="usuario" value={formulario.usuario} placeholder="usuario" onChange={controlaEstado} required />
-                <input type="email" name="email" value={formulario.email} placeholder="email" onChange={controlaEstado} required />
-                <input type="text" name="telefone" value={formulario.telefone} placeholder="telefone" onChange={controlaEstado} />
-                <input type="password" name="senha" value={formulario.senha} placeholder="senha" onChange={controlaEstado} required />
-                <input type="password" name="confirmaSenha" value={formulario.confirmaSenha} placeholder="confirmar a Senha" onChange={controlaEstado} required />
-                <button type="submit">Cadastrar</button>
-                <Link to={"/login"}>Já possui uma conta? Logue!</Link>
+
+                <input
+                    type="text"
+                    name="nome"
+                    value={formulario.nome}
+                    placeholder="Nome de exibição"
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-input"
+                />
+
+                <input
+                    type="text"
+                    name="usuario"
+                    value={formulario.usuario}
+                    placeholder="Usuário"
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-input"
+                />
+
+                <input
+                    type="email"
+                    name="email"
+                    value={formulario.email}
+                    placeholder="Email"
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-input"
+                />
+
+                <input
+                    type="text"
+                    name="telefone"
+                    value={formulario.telefone}
+                    placeholder="Telefone"
+                    onChange={controlaEstado}
+                    className="cadastroUsuario-input"
+                />
+
+                <input
+                    type="password"
+                    name="senha"
+                    value={formulario.senha}
+                    placeholder="Senha"
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-input"
+                />
+
+                <input
+                    type="password"
+                    name="confirmaSenha"
+                    value={formulario.confirmaSenha}
+                    placeholder="Confirmar senha"
+                    onChange={controlaEstado}
+                    required
+                    className="cadastroUsuario-input"
+                />
+
+                <button type="submit" className="cadastroUsuario-botao">Cadastrar</button>
+
+                <Link to="/login" className="cadastroUsuario-link">
+                    Já possui uma conta? Logue!
+                </Link>
             </form>
         </>
     )

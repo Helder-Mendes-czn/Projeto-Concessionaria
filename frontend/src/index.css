@@ -1,19 +1,29 @@
-/* :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+:root {
+  --branco: #FFFFFF;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --azul-1: #0A84FF;   /* Azul vibrante / destaque */
+  --azul-2: #0066CC;   /* Azul forte / botões */
+  --azul-3: #004C99;   /* Azul médio */
+  --azul-4: #003366;   /* Azul profundo / bordas */
+
+  --preto: #0f0f0f;
+  --cinza-1: #1a1a1a;
+  --cinza-2: #262626;
+
+  --fonte-principal: "Inter", sans-serif;
 }
 
-a {
+body {
+  font-family: var(--fonte-principal);
+  background: var(--preto);
+  color: var(--branco);
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;

@@ -1,0 +1,273 @@
+/* ============================ LAYOUT GERAL ============================= */
+.paginaAnuncio {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+    font-family: var(--fonte-principal);
+    color: var(--branco);
+}
+
+/* ============================ CARROSSEL ============================= */
+.imagensMoto {
+    width: 70vw;
+    height: 27vw;
+    position: relative;
+    overflow: hidden;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.imagensMoto img{
+    border-radius: 8px;
+}
+
+/* imagem central */
+.center-img {
+    position: absolute;
+    box-shadow: 0 0px 8px 0px #1e00ff;
+    top: 50%;
+    left: 50%;
+    width: 60%;       
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 3;
+}
+
+/* imagem anterior */
+.prev-img {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 20%;       
+    height: 80%;
+    transform: translateY(-50%);
+    object-fit: cover;
+    opacity: 0.45;
+    filter: blur(1px);
+    z-index: 1;
+}
+
+/* imagem seguinte */
+.next-img {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    width: 20%;       
+    height: 80%;
+    transform: translateY(-50%);
+    object-fit: cover;
+    opacity: 0.45;
+    filter: blur(1px);
+    z-index: 1;
+}
+
+.carrosselBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,.55);
+    border: 1px solid var(--azul-1);
+    padding: 12px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--branco);
+    transition: .2s;
+    z-index: 10;
+}
+
+.carrosselBtn:hover {
+    box-shadow: 0 0px 8px #1e00ff;
+    border: 1px solid var(--branco);
+}
+
+.carrosselBtn.esquerda { left: 12px;}
+.carrosselBtn.direita { right: 12px;}
+
+/* miniaturas */
+.miniaturas {
+    position: absolute;
+    display: flex;
+    gap: 8px;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.miniaturas img {
+    width: 62px;
+    height: 54px;
+    border-radius: 8px;
+    cursor: pointer;
+    object-fit: cover;
+    opacity: .55;
+    border: 2px solid transparent;
+    transition: .2s;
+}
+
+.miniaturas img:hover,
+.miniaturas img.ativa {
+    opacity: 1;
+    border-color: var(--azul-1);
+}
+
+
+/* ============================ DETALHES DA MOTO ============================= */
+.anuncioContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardDetalhesMoto {
+    width: 60vw;
+    margin-top: 30px;
+    background: var(--cinza-2);
+    padding: 24px 44px;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.35);
+    margin-bottom: 24px;
+}
+
+.cardDetalhesMotoTitulo{
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardDetalhesMotoPrimeiro{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.cardDetalhesMotoPrimeiro > div{
+    display: flex;
+    gap: .3rem;
+}
+
+.cardDetalhesMotoPrimeiro div{
+    margin: 0 2rem;
+}
+
+.cardDetalhesMotoPrimeiro div h5,h6{
+    font-size: 1.75rem;
+}
+.cardDetalhesMotoPrimeiro div h6{
+    font-size: 1.75rem;
+}
+
+.cardDetalhesMoto h2 {
+    font-size: 26px;
+    color: var(--azul-1);
+    margin-bottom: 16px;
+}
+
+.cardDetalhesMoto span {
+    color: var(--branco);
+}
+
+.cardDetalhesMoto i {
+    cursor: pointer;
+    margin-left: 12px;
+    font-size: 2rem;
+    transition: .25s;
+}
+
+.cardDetalhesMoto i:hover {
+    color: var(--azul-1);
+}
+
+/* GRID DE ESPECIFICAÇÕES */
+.cardDetalhesMoto > div > div:last-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 12px;
+    column-gap: 16px;
+}
+
+.cardDetalhesMoto h6 {
+    color: var(--azul-2);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cardDetalhesMoto h5 {
+    color: var(--branco);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.cardDetalhesMoto hr {
+    border: 0;
+    height: 1px;
+    background: var(--azul-4);
+    margin: 20px 0;
+}
+
+/* ============================ VENDEDOR ============================= */
+.cardDetalhesVendedor {
+    background: var(--cinza-2);
+    padding: 24px;
+    width: 60vw;
+    line-height: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.35);
+    margin-bottom: 24px;
+    font-size: 16px;
+}
+
+.cardDetalhesVendedor i{
+    cursor: auto;
+    color: var(--azul-1);
+}
+
+.cardDetalhesVendedorSegundo{
+    margin-top: .1rem;
+    margin-left: .75rem;
+}
+
+.cardDetalhesVendedor span{
+    color: var(--azul-1);
+}
+
+/* ============================ MENSAGEM PARA VENDEDOR ============================= */
+.cardMensagemParaOVendedor form {
+    background: var(--cinza-2);
+    width: 60vw;
+    padding: 18px;
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.35);
+}
+
+.cardMensagemParaOVendedor input {
+    background: var(--cinza-1);
+    flex: 1;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--azul-4);
+    color: var(--branco);
+    outline: none;
+}
+
+.cardMensagemParaOVendedor button {
+    background: var(--azul-2);
+    border: none;
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: var(--branco);
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.cardMensagemParaOVendedor button:hover {
+    background: var(--azul-1);
+    transform: translateY(-2px);
+}

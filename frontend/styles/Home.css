@@ -1,0 +1,250 @@
+:root {
+    --branco: #FFFFFF;
+
+    --azul-1: #0A84FF;
+    --azul-2: #0066CC;
+    --azul-3: #004C99;
+    --azul-4: #003366;
+
+    --preto: #0f0f0f;
+    --cinza-1: #202124;
+    --cinza-2: #292929;
+
+    --fonte-principal: "Inter", sans-serif;
+}
+
+.landing {
+    border-radius: 1rem;
+    background: var(--cinza-1);
+    color: var(--branco);
+    font-family: var(--fonte-principal);
+}
+
+/* ------------------ HERO ------------------ */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 7%;
+    background: linear-gradient(135deg, var(--cinza-1), var(--cinza-2));
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease forwards;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--azul-2);
+    color: var(--branco);
+}
+
+.btn-primary:hover {
+    background: var(--azul-1);
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    border: 2px solid var(--azul-1);
+    color: var(--azul-1);
+}
+
+.btn-secondary:hover {
+    background: var(--azul-1);
+    color: var(--branco);
+    transform: scale(1.05);
+}
+
+.hero-img {
+    width: 45%;
+    height: 320px;
+    border-radius: 14px;
+    background: url('https://images.unsplash.com/photo-1517602302552-471fe67acf66') center/cover no-repeat;
+    filter: brightness(.85);
+    animation: slideIn 1s ease forwards;
+}
+
+/* ------------------ HIGHLIGHTS ------------------ */
+
+.highlights {
+    padding: 60px 7%;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.highlight-card {
+    background: var(--cinza-2);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--azul-4);
+    flex: 1;
+    text-align: center;
+    transition: .3s ease;
+}
+
+.highlight-card i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--azul-1);
+}
+
+.highlight-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
+}
+
+/* ------------------ COMO FUNCIONA ------------------ */
+
+.como-funciona {
+    padding: 70px 7%;
+    text-align: center;
+}
+
+.steps {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.step {
+    background: var(--cinza-2);
+    padding: 22px;
+    width: 32%;
+    border-radius: 12px;
+    border: 1px solid var(--azul-4);
+    transition: .3s;
+}
+
+.step span {
+    display: inline-block;
+    background: var(--azul-1);
+    padding: 10px 18px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.step:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
+}
+
+/* ------------------ BENEFÍCIOS ------------------ */
+
+.beneficios {
+    padding: 70px 7%;
+    text-align: center;
+}
+
+.beneficios-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 25px;
+}
+
+.beneficio-item {
+    background: var(--cinza-2);
+    padding: 25px;
+    flex: 1;
+    border-radius: 12px;
+    border: 1px solid var(--azul-4);
+    transition: .3s;
+    text-align: center;
+}
+
+.beneficio-item i {
+    font-size: 2rem;
+    color: var(--azul-1);
+    margin-bottom: 10px;
+}
+
+.beneficio-item:hover {
+    transform: scale(1.05);
+}
+
+/* ------------------ FOOTER ------------------ */
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--cinza-2);
+    margin-top: 50px;
+}
+
+/* ------------------ ANIMAÇÕES ------------------ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ---------------- RESPONSIVO ---------------- */
+
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 260px;
+    }
+
+    .highlights,
+    .steps,
+    .beneficios-grid {
+        flex-direction: column;
+    }
+
+    .highlight-card,
+    .step,
+    .beneficio-item {
+        width: 100%;
+    }
+}

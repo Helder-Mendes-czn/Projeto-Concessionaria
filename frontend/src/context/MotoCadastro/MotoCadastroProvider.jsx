@@ -8,64 +8,18 @@ export default function MotoCadastroProvider({ children, usuario }) {
             idUsuario: usuario.id,
             ...dadosSalvos,
         }
-
     }
-        // dadosSalvos || {
-        //     idUsuario: usuario.id,
-        //     preco: "",
-        //     marca: "",
-        //     modelo: "",
-        //     ano: "",
-        //     anoModelo: "",
-        //     anoFabricacao: "",
-        //     estilo: "",
-        //     cilindrada: "",
-        //     motor: "",
-        //     potencia: "",
-        //     torque: "",
-        //     taxaCompressao: "",
-        //     diametroCurso: "",
-        //     valvulasPorCilindro: "",
-        //     alimentacao: "",
-        //     comandoCombustivel: "",
-        //     ignicao: "",
-        //     lubrificacao: "",
-        //     refrigeracao: "",
-        //     caixaMarchas: "",
-        //     transmissao: "",
-        //     embreagem: "",
-        //     quadro: "",
-        //     suspensaoDianteira: "",
-        //     cursoRodaDianteira: "",
-        //     suspensaoTraseira: "",
-        //     cursoRodaTraseira: "",
-        //     pneuDianteiro: "",
-        //     pneuTraseiro: "",
-        //     freiosDianteiros: "",
-        //     freiosTraseiros: "",
-        //     pesoTotal: "",
-        //     alturaAssento: "",
-        //     alturaTotal: "",
-        //     comprimentoTotal: "",
-        //     larguraTotal: "",
-        //     distanciaSolo: "",
-        //     entreEixos: "",
-        //     capacidadeCombustivel: "",
-        //     partida: "",
-        //     imagens: [],
-        //     quilometragem: "",
-        //     corPrincipal: "",
-        //     corSecundaria: ""
-        // }
     );
 
     useEffect(() => {
         localStorage.setItem("cadastroMoto", JSON.stringify(formulario));
     }, [formulario]);
 
-    const controlaEstado = (elemento, imagens) => {
-        if (imagens !== undefined) {
-            setFormulario({...formulario, [elemento]: imagens})
+    const controlaEstado = (elemento, novasImagens) => {
+        if (novasImagens !== undefined) {
+            const imagensAnteriores = formulario[elemento] || [];
+            const todasImagens = [...imagensAnteriores, ...novasImagens];
+            setFormulario({ ...formulario, [elemento]: todasImagens });
             return;
         }
 
@@ -75,7 +29,7 @@ export default function MotoCadastroProvider({ children, usuario }) {
 
     const resetarFormulario = () => {
         setFormulario({
-            idUsuario: usuario.id,
+            // idUsuario: usuario.id,
             preco: "",
             descricao: "",
             marca: "",
@@ -106,6 +60,7 @@ export default function MotoCadastroProvider({ children, usuario }) {
             cursoRodaTraseira: "",
             pneuDianteiro: "",
             pneuTraseiro: "",
+            freios: "",
             freiosDianteiros: "",
             freiosTraseiros: "",
             pesoTotal: "",

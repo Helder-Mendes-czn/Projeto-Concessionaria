@@ -8,11 +8,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use('/uploads', express.static('uploads'));
+
 app.get('/anuncios/buscar', async (req, res) => {
     try {
         const filtros = req.query;
         const valores = []
-        let sql = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.pneu_dianteiro,m.pneu_traseiro,m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.imagem_principal,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, CASE WHEN m.freios_dianteiros LIKE '%disc%' THEN 'disc' ELSE 'brake' END AS freio_dianteiro_categoria, CASE WHEN m.freios_traseiros LIKE '%disc%' THEN 'disc' ELSE 'brake' END AS freio_traseiro_categoria FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo'`;
+        let sqlAnuncio = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.cor_principal,m.cor_secundaria,m.ano_fabricacao, m.ano_modelo,m.pneu_dianteiro,m.quilometragem,m.pneu_traseiro,m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, CASE WHEN m.freios_dianteiros LIKE '%disc%' THEN 'disc' ELSE 'brake' END AS freio_dianteiro_categoria, CASE WHEN m.freios_traseiros LIKE '%disc%' THEN 'disc' ELSE 'brake' END AS freio_traseiro_categoria FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo'`;
 
         const condicoes = [];
 
@@ -91,13 +93,24 @@ app.get('/anuncios/buscar', async (req, res) => {
         });
 
         if (condicoes.length > 0) {
-            sql += " AND " + condicoes.join(" AND ");
+            sqlAnuncio += " AND " + condicoes.join(" AND ");
         }
 
-        sql += " ORDER BY a.data_publicacao DESC";
+        sqlAnuncio += " ORDER BY a.data_publicacao DESC";
 
-        const [resultado] = await pool.execute(sql, valores);
-        res.json(resultado);
+        const [anuncios] = await pool.execute(sqlAnuncio, valores);
+
+        const resultadoComImagens = [];
+
+        for (const anuncio of anuncios){
+            const [imagens] = await pool.execute("SELECT imagem FROM moto_imagens WHERE id_moto = ?", [anuncio.id_moto])
+            resultadoComImagens.push({
+                anuncio,
+                imagens: imagens.map(i => i.imagem)
+            });
+        }
+
+        res.status(200).json(resultadoComImagens)
     } catch (error) {
         console.error("erro: ", error)
     }
@@ -106,11 +119,21 @@ app.get('/anuncios/buscar', async (req, res) => {
 app.get("/anuncios/buscarPorId/:id", async (req, res) => {
     try {
         let id = req.params.id;
-        let sql = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.pneu_dianteiro,m.pneu_traseiro,m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.imagem_principal,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, u.nome as nome_usuario, u.email as email_usuario, u.telefone as telefone_usuario, u.tipo as tipo_usuario FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo' AND a.id = ?`;
+        let sqlAnuncio = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.quilometragem,m.cor_principal,m.cor_secundaria,m.ano_fabricacao, m.ano_modelo,m.pneu_dianteiro,m.pneu_traseiro,m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, u.nome as nome_usuario, u.email as email_usuario, u.telefone as telefone_usuario, u.tipo as tipo_usuario FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo' AND a.id = ?`;
 
-        const [resultado] = await pool.execute(sql, [id]);
-        res.status(200).json(resultado);
+        const [anuncios] = await pool.execute(sqlAnuncio, [id]);
 
+        const resultadoComImagens = [];
+
+        for (const anuncio of anuncios){
+            const [imagens] = await pool.execute("SELECT imagem FROM moto_imagens WHERE id_moto = ?", [anuncio.id_moto])
+            resultadoComImagens.push({
+                anuncio,
+                imagens: imagens.map(i => i.imagem)
+            });
+        }
+
+        res.status(200).json(resultadoComImagens);
     } catch (error) {
         console.error("erro: \n", error);
         res.status(500).json({ mensagem: "Erro interno no servidor" });
@@ -124,6 +147,7 @@ app.post('/anuncios/cadastrar', autenticarToken, async (req, res) => {
         }
 
         const { id_usuario, id_moto, preco, localizacao, descricao } = req.body;
+        console.log("REQ BODY: \n", req.body);
 
         if (!id_usuario || !id_moto || !preco || !localizacao || !descricao) {
             return res.status(400).json({ mensagem: "Todos os campos são obrigatórios" });
@@ -133,10 +157,31 @@ app.post('/anuncios/cadastrar', autenticarToken, async (req, res) => {
 
         await pool.execute(sql, [id_usuario, id_moto, preco, localizacao, descricao]);
 
-        res.json({ mensagem: "Anúncio feito com sucesso" });
+        res.status(200).json({ mensagem: "Anúncio feito com sucesso" });
     } catch (error) {
         console.error("Erro ao cadastrar anúncio:", error);
         res.status(500).json({ mensagem: "Erro interno no servidor", erro: error.message });
+    }
+});
+
+app.get('/anuncios/usuario/:id', async (req, res) => {
+    try {
+        let {id} = req.params;
+        const [anuncios] = await pool.execute("SELECT a.id AS id_anuncio, m.id AS id_moto, a.preco, a.localizacao, m.ano, m.ano_fabricacao, m.ano_modelo, m.marca, m.modelo, m.quilometragem FROM anuncio a JOIN usuario u ON a.id_usuario = u.id JOIN moto m ON a.id_moto = m.id ORDER BY a.data_publicacao DESC", [id])
+
+        const resultadoComImagens = [];
+
+        for (const anuncio of anuncios){
+            const [imagens] = await pool.execute("SELECT imagem FROM moto_imagens WHERE id_moto = ?", [anuncio.id_moto])
+            resultadoComImagens.push({
+                anuncio,
+                imagens: imagens.map(i => i.imagem)
+            });
+        }
+
+        res.status(200).json(resultadoComImagens)
+    } catch (error) {
+        console.error("erro: \n", error);
     }
 });
 
@@ -168,13 +213,12 @@ app.put('/anuncios/editar/:id', async (req, res) => {
         const [resultado] = await pool.execute(sql, valores);
 
         if (resultado.affectedRows === 0) {
-            return res.json({ mensagem: `Anuncio com id ${idAnuncio} não encontradoo para atualizacao` });
+            return res.json({ mensagem: `Anuncio com id ${idAnuncio} não encontrado para atualizacao` });
         }
 
-        res.json({ mensagem: "Anúncio atualizad com sucesso" });
-
+        res.json({ mensagem: "Anúncio atualizado com sucesso" });
     } catch (error) {
-        console.error("erro: \n", error)
+        console.error("erro: \n", error);
     }
 })
 

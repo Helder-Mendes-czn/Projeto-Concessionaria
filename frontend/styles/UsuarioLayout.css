@@ -1,0 +1,114 @@
+.usuario-container {
+  display: flex;
+  min-height: 100vh;
+  border-radius: 1rem;
+  background: var(--cinza-1);
+  color: var(--branco);
+  font-family: var(--fonte-principal);
+}
+
+/* --- SIDEBAR --- */
+.usuario-sidebar {
+  width: 260px;
+  background: var(--cinza-2);
+  border-right: 2px solid var(--azul-4);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.usuario-sidebar h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--azul-1);
+  text-align: center;
+}
+
+/* NAV */
+.usuario-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.usuario-sidebar nav a {
+  text-decoration: none;
+  padding: 0.9rem 1rem;
+  background: var(--cinza-1);
+  color: var(--branco);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  transition: 0.25s ease;
+}
+
+/* Hover */
+.usuario-sidebar nav a:hover {
+  background: var(--azul-3);
+  border-color: var(--azul-1);
+}
+
+/* NavLink ativo */
+.usuario-sidebar nav a.active {
+  background: var(--azul-2);
+  color: var(--branco);
+  font-weight: 600;
+  border-color: var(--azul-1);
+  box-shadow: 0 0 8px rgba(10,132,255,0.5);
+}
+
+/* --- CONTEÚDO --- */
+.usuario-conteudo {
+  flex: 1;
+  padding: 2rem 3rem;
+  background: var(--cinza-1);
+  overflow-y: auto;
+}
+
+/* Ajuste de scroll elegante */
+.usuario-conteudo::-webkit-scrollbar {
+  width: 10px;
+}
+
+.usuario-conteudo::-webkit-scrollbar-track {
+  background: var(--cinza-2);
+}
+
+.usuario-conteudo::-webkit-scrollbar-thumb {
+  background: var(--azul-3);
+  border-radius: 8px;
+}
+
+.usuario-conteudo::-webkit-scrollbar-thumb:hover {
+  background: var(--azul-2);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+  .usuario-container {
+    flex-direction: column;
+  }
+
+  .usuario-sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem;
+  }
+
+  .usuario-sidebar nav {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .usuario-sidebar nav a {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .usuario-conteudo {
+    padding: 1.5rem;
+  }
+}
