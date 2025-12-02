@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const pool = require('../mySql2');
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import pool from '../mySql2.js';
 const apiKey = 'j3T0PAWdMgeUS/rPua/suA==brhyBNIt4oepj7Ef';
 
 const app = express();

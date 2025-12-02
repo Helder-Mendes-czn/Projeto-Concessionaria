@@ -1,5 +1,4 @@
 import '../styles/App.css';
-import '../styles/Home.css';
 import '../styles/Perfil.css';
 import '../styles/CardAnuncio.css';
 import '../styles/AnuncioMoto.css';
@@ -18,7 +17,7 @@ function App() {
     <>
       <nav className='navApp'>
         <div className='divNavApp divLogoApp' onClick={() => { navigate('/home') }}>
-          Helder Motos
+          CZN Motors
         </div>
 
         <div className='divNavApp'>
@@ -40,7 +39,7 @@ function App() {
         <div className='divFooterApp'>
           <div>
             <div className='divNavApp divLogoApp' onClick={() => { navigate('/home') }}>
-              Helder Motos
+              CZN Motors
             </div>
             <div className='divFooterContatosApp'>
               <h3>Me contate através das <span>redes sociais</span>!</h3>

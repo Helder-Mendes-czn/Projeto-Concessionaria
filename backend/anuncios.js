@@ -1,8 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const pool = require('../mySql2');
-const cors = require('cors');
-const { default: autenticarToken } = require('../frontend/src/middleware/autenticarToken');
+import autenticarToken from "../frontend/src/middleware/autenticarToken.js";
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import pool from '../mySql2.js';
 
 const app = express();
 app.use(bodyParser.json());
@@ -238,4 +238,4 @@ app.delete('/anuncios/deletar/:id', async (req, res) => {
     }
 })
 
-app.listen(8002, () => { console.log("servidor rodando em 8002") })
+app.listen(1334, () => { console.log("servidor rodando em 1334") })

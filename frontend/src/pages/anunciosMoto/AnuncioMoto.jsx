@@ -10,7 +10,7 @@ function AnuncioMoto() {
 
     const buscarAnuncio = async () => {
         try {
-            const res = await fetch(`http://localhost:8002/anuncios/buscarPorId/${id}`);
+            const res = await fetch(`http://localhost:1334/anuncios/buscarPorId/${id}`);
             const data = await res.json();
             setDadosAnuncio(data);
         } catch (error) {
@@ -39,7 +39,7 @@ function AnuncioMoto() {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await fetch("http://localhost:8003/mensagens/enviar", {
+            const res = await fetch("http://localhost:1332/mensagens/enviar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -59,7 +59,7 @@ function AnuncioMoto() {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await fetch("http://localhost:8004/garagem/favoritar", {
+            const res = await fetch("http://localhost:1333/garagem/favoritar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,18 +87,15 @@ function AnuncioMoto() {
         );
     };
 
-    console.log(dadosAnuncio[0].anuncio)
-
     return (
         <>
             <div>
                 <div className="imagensMoto">
 
-                    {/* Imagem anterior */}
                     {dadosAnuncio[0].imagens && (
                         <img
                             className="prev-img"
-                            src={`http://localhost:8004/uploads/${dadosAnuncio[0].imagens[
+                            src={`http://localhost:1333/uploads/${dadosAnuncio[0].imagens[
                                 (imagemAtual - 1 + dadosAnuncio[0].imagens.length) %
                                 dadosAnuncio[0].imagens.length
                             ]
@@ -107,20 +104,18 @@ function AnuncioMoto() {
                         />
                     )}
 
-                    {/* Imagem atual (central) */}
                     {dadosAnuncio[0].imagens && (
                         <img
                             className="center-img"
-                            src={`http://localhost:8004/uploads/${dadosAnuncio[0].imagens[imagemAtual]}`}
+                            src={`http://localhost:1333/uploads/${dadosAnuncio[0].imagens[imagemAtual]}`}
                             alt={dadosAnuncio[0].anuncio.modelo}
                         />
                     )}
 
-                    {/* Imagem seguinte */}
                     {dadosAnuncio[0].imagens && (
                         <img
                             className="next-img"
-                            src={`http://localhost:8004/uploads/${dadosAnuncio[0].imagens[
+                            src={`http://localhost:1333/uploads/${dadosAnuncio[0].imagens[
                                 (imagemAtual + 1) % dadosAnuncio[0].imagens.length
                             ]
                                 }`}
@@ -136,12 +131,11 @@ function AnuncioMoto() {
                         <i className="fa-solid fa-chevron-right"></i>
                     </button>
 
-                    {/* miniaturas */}
                     <div className="miniaturas">
                         {dadosAnuncio[0].imagens?.map((img, index) => (
                             <img
                                 key={index}
-                                src={`http://localhost:8004/uploads/${img}`}
+                                src={`http://localhost:1333/uploads/${img}`}
                                 alt="mini"
                                 className={imagemAtual === index ? "ativa" : ""}
                                 onClick={() => setImagemAtual(index)}
@@ -169,7 +163,7 @@ function AnuncioMoto() {
                                 </div>
                                 <div>
                                     <h6>Ano</h6>
-                                    <h5>{dadosAnuncio[0].anuncio.ano}</h5>
+                                    <h5>{dadosAnuncio[0].anuncio.ano_modelo}/{dadosAnuncio[0].anuncio.ano_fabricacao}</h5>
                                 </div>
                                 <div>
                                     <h6>Tipo de motor</h6>

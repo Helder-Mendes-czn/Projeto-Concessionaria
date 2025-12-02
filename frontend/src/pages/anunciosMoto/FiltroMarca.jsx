@@ -27,11 +27,7 @@ export default function FiltroMarca({ filtros, setFiltros }) {
 
     return (
         <div className="filtrosMoto">
-
-            {/* TÍTULO */}
             <h4 className="tituloFiltros">Marca</h4>
-
-            {/* LISTA PRINCIPAL DE MARCAS */}
             <div>
                 {marcasFixas.map((m) => (
                     <div
@@ -45,17 +41,13 @@ export default function FiltroMarca({ filtros, setFiltros }) {
                 ))}
             </div>
 
-            {/* BOTÃO ABRIR COLUNA COMPLETA */}
             <button onClick={() => setAbrirListaMarcas(true)}>
                 Ver todas as marcas
             </button>
 
-            {/* LISTA EXPANDIDA */}
             {abrirListaMarcas && (
                 <div className="filtrosMarcaColuna">
                     <div>
-
-                        {/* HEADER */}
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                                 <i
@@ -66,8 +58,6 @@ export default function FiltroMarca({ filtros, setFiltros }) {
                                 <h5>Selecione uma marca</h5>
                             </div>
                         </div>
-
-                        {/* INPUT BUSCA */}
                         <div style={{ marginTop: 12 }}>
                             <input
                                 type="text"
@@ -82,18 +72,11 @@ export default function FiltroMarca({ filtros, setFiltros }) {
                     </div>
 
                     <hr />
-
-                    {/* LISTA COM SCROLL */}
                     <div className="filtrosMarcaColunaLista">
                         <h6 className="tituloFiltrosMarcaLista">Todas as marcas</h6>
                         <ul>
                             {listaMarcas.map((marca) => (
-                                <li
-                                    key={marca}
-                                    
-                                >
-                                    {marca}
-                                </li>
+                                <li key={marca}>{marca}</li>
                             ))}
                         </ul>
                     </div>

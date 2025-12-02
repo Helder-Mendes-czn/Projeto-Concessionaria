@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cadastro() {
     const [formulario, setFormulario] = useState({ nome: "", usuario: "", email: "", telefone: "", senha: "", confirmaSenha: "", tipo: "" })
+    const navigate = useNavigate();
 
     const controlaEstado = (elemento) => {
         const { name, value } = elemento.target;
@@ -15,13 +16,14 @@ function Cadastro() {
     }
     const cadastrar = async () => {
         try {
-            const res = await fetch("http://localhost:4000/usuarios/cadastrar", {
+            const res = await fetch("http://localhost:1330/usuarios/cadastrar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formulario),
             });
             const resultado = await res.json();
             alert(resultado.mensagem);
+            navigate("/home");
         } catch (error) {
             console.error("ERRO: ", error)
         }

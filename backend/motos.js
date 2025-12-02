@@ -44,7 +44,7 @@ app.post('/motos/cadastrar', autenticarToken, upload.array("imagens", 10), async
 
         const valores = req.body;
         const imagens = req.files.map(file => file.filename);
-        let sql = "INSERT INTO moto(id_usuario, marca, modelo, ano,ano_modelo, ano_fabricacao, estilo, cilindrada, motor, potencia, torque, taxa_compressao, diametro_curso, valvulas_por_cilindro, alimentacao, comando_combustivel, ignicao, lubrificacao,refrigeracao, caixa_marchas, transmissao, embreagem, quadro, suspensao_dianteira, curso_roda_dianteira, suspensao_traseira, curso_roda_traseira, pneu_dianteiro, pneu_traseiro,freios,freios_dianteiros, freios_traseiros, peso_total, altura_assento, altura_total, comprimento_total, largura_total, distancia_solo, entre_eixos, capacidade_combustivel, partida, quilometragem, cor_principal, cor_secundaria)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        let sql = "INSERT INTO moto(id_usuario, marca, modelo, ano_modelo, ano_fabricacao, estilo, cilindrada, motor, potencia, torque, taxa_compressao, diametro_curso, valvulas_por_cilindro, alimentacao, comando_combustivel, ignicao, lubrificacao,refrigeracao, caixa_marchas, transmissao, embreagem, quadro, suspensao_dianteira, curso_roda_dianteira, suspensao_traseira, curso_roda_traseira, pneu_dianteiro, pneu_traseiro,freios,freios_dianteiros, freios_traseiros, peso_total, altura_assento, altura_total, comprimento_total, largura_total, distancia_solo, entre_eixos, capacidade_combustivel, partida, quilometragem, cor_principal, cor_secundaria)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
         if (valores.marca == undefined || valores.modelo == undefined || (valores.anoModelo == undefined && valores.anoFabricacao == undefined && valores.ano == undefined) || valores.estilo == undefined) {
             return res.json({ mensagem: "marca, estilo, modelo e ano são atributos obrigatórios por favor registre" })
@@ -56,7 +56,6 @@ app.post('/motos/cadastrar', autenticarToken, upload.array("imagens", 10), async
             valores.modelo || null,
             valores.anoModelo || null,
             valores.anoFabricacao || null,
-            valores.ano || null,
             valores.estilo,
             valores.cilindrada || null,
             valores.motor || null,
@@ -156,4 +155,4 @@ app.delete('/motos/deletar', async (req, res) => {
     }
 });
 
-app.listen(8001, () => { console.log('server rodando na porta 8001') })
+app.listen(1331, () => { console.log('server rodando na porta 1331') })

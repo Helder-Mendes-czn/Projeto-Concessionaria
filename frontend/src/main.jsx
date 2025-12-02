@@ -75,7 +75,6 @@ const router = createBrowserRouter([
             path: "anuncios/editarAnuncio/:idAnuncio",
             element: <EditarAnuncioRoutes usuario={usuario} />,
             children: [
-              // { index: true, element: <EditarAnuncio /> },
               { path: "etapa1", element: <Etapa1 /> },
               { path: "etapa2", element: <Etapa2 /> },
               { path: "etapa3", element: <Etapa3 /> },

@@ -1,0 +1,5 @@
+import './anuncios.js'
+import './garagem.js'
+import './motos.js'
+import './usuarios.js'
+import './mensagens.js'

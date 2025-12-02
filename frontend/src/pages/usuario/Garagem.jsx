@@ -7,7 +7,7 @@ export default function Garagem({ usuario }) {
 
     const buscarAnuncios = async () => {
         try {
-            const res = await fetch(`http://localhost:8004/garagem/usuario/${id}`)
+            const res = await fetch(`http://localhost:1333/garagem/usuario/${id}`)
             const data = await res.json();
             setAnuncios(data);
         } catch (error) {
@@ -23,7 +23,7 @@ export default function Garagem({ usuario }) {
         try {
             const token = localStorage.getItem("token");
 
-            const res = await fetch("http://localhost:8004/garagem/favoritar", {
+            const res = await fetch("http://localhost:1333/garagem/favoritar", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,13 +41,14 @@ export default function Garagem({ usuario }) {
 
     return (
         <>
+            <h1>Meus favoritos</h1>
             <div className="container-card-anuncio">
                 {anuncios.map((item) => (
                     <div key={item.anuncio.id_anuncio} className="card-anuncio">
 
                         <img
                             className="card-img"
-                            src={item.imagens?.[0] ? `http://localhost:8004/uploads/${item.imagens[0]}` : ""}
+                            src={item.imagens?.[0] ? `http://localhost:1333/uploads/${item.imagens[0]}` : ""}
                             alt={item.anuncio.modelo}
                         />
 

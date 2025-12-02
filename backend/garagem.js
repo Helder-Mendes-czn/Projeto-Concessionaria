@@ -59,4 +59,4 @@ app.post("/garagem/favoritar", autenticarToken, async (req, res) => {
     }
 });
 
-app.listen(8004, () => { console.log("servidor rodando 8004") });
+app.listen(1333, () => { console.log("servidor rodando 1333") });

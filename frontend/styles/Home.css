@@ -1,250 +1,531 @@
-:root {
-    --branco: #FFFFFF;
-
-    --azul-1: #0A84FF;
-    --azul-2: #0066CC;
-    --azul-3: #004C99;
-    --azul-4: #003366;
-
-    --preto: #0f0f0f;
-    --cinza-1: #202124;
-    --cinza-2: #292929;
-
-    --fonte-principal: "Inter", sans-serif;
-}
-
-.landing {
+.landingCzn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     border-radius: 1rem;
-    background: var(--cinza-1);
+    gap: 6rem;
+    animation: fadeIn .4s ease-in-out;
     color: var(--branco);
-    font-family: var(--fonte-principal);
 }
 
-/* ------------------ HERO ------------------ */
+a{
+    text-decoration: none;
+}
 
-.hero {
+/* HERO */
+.heroCzn {
+    width: 100%;
+    min-height: 83vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 80px 7%;
-    background: linear-gradient(135deg, var(--cinza-1), var(--cinza-2));
+    background: linear-gradient(90deg, var(--cinza-1), var(--cinza-2));
+    padding: 3rem 4rem;
+    border-bottom: 2px solid var(--azul-4);
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    animation: fadeIn 1s ease forwards;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    opacity: 0.8;
-}
-
-.hero-buttons {
+.heroContent {
+    max-width: 40%;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 1.4rem;
 }
 
-.btn-primary,
-.btn-secondary {
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: .3s;
+.heroContent h1 {
+    font-size: 4.4rem;
+    line-height: 1.2;
+    font-weight: 800;
 }
 
-.btn-primary {
+.heroContent h2 {
+    font-size: 3.5rem;
+    text-shadow: 0px 0px 15px var(--azul-1);
+}
+
+.heroContent h1 span {
+    color: var(--azul-1);
+}
+
+.heroContent p {
+    font-size: 1.2rem;
+    opacity: .85;
+}
+
+.btnHero {
+    text-align: center;
+    padding: 0.9rem 2.5rem;
     background: var(--azul-2);
+    border: none;
+    border-radius: 0.6rem;
+    width: 60%;
+    font-size: 1.1rem;
     color: var(--branco);
+    border: 1px solid var(--azul-2);
+    transition: .3s;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all linear .3s ease-in;
 }
 
-.btn-primary:hover {
-    background: var(--azul-1);
-    transform: scale(1.05);
+.btnHero:hover {
+    background: var(--azul-4);
+    border: .5px solid var(--branco);
+    transition: all linear .3s ease-in-out;
+    box-shadow: 0 0 10px var(--azul-1);
 }
 
-.btn-secondary {
+.heroImg {
+    width: 55%;
+    height: 39vw;
+    background: url("../src/assets/wp-2yamaha-mt-09-wallpapers.jpg") center/cover no-repeat;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 5px 8px rgba(43, 100, 224, 0.45);
+}
+
+/* Categorias */
+.categoriasCzn {
+    text-align: center;
+    padding: 0 3rem;
+}
+
+.categoriasCzn h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2.5rem;
+}
+
+.gridCategorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+}
+
+.itemCategoria {
+    padding: 1rem 2rem;
+    background: var(--cinza-2);
+    border-radius: 0.6rem;
+    border: 1px solid var(--azul-4);
+    font-size: 1.1rem;
+    transition: .3s;
+}
+
+.itemCategoria:hover {
+    background: var(--azul-2);
+}
+
+/* Por que escolher */
+.porqueCzn {
+    text-align: center;
+}
+
+.porqueCzn h2 {
+    font-size: 2.75rem;
+}
+
+.porqueCzn h2 span {
+    color: var(--azul-1);
+    text-shadow: 0px 0px 15px var(--azul-1);
+}
+
+.cardsPorque {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.cardP {
+    padding: 2rem;
+    background: var(--cinza-1);
+    border-radius: 0.8rem;
+    border: 1px solid var(--azul-4);
+    font-size: 1.55rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 380px;
+    height: 200px;
+    transition: .3s;
+    gap: 1rem;
+}
+
+.cardP i {
+    color: var(--azul-1);
+}
+
+.cardP:hover {
+    box-shadow: 0 0 10px var(--azul-1);
+    transform: translateY(-4px);
+    background: var(--cinza-2);
+}
+
+/* Motos em destaque */
+.destaquesCzn {
+    padding: 0 3rem;
+    text-align: center;
+}
+
+.gridDestaques {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.cardMoto {
+    background: var(--cinza-2);
+    border-radius: 1rem;
+    border: 1px solid var(--azul-4);
+    width: 300px;
+    padding-bottom: 1.2rem;
+    transition: .3s;
+}
+
+.cardMoto:hover {
+    transform: translateY(-6px);
+    border-color: var(--azul-1);
+}
+
+.imgMoto {
+    width: 100%;
+    height: 190px;
+    border-radius: 1rem 1rem 0 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.m1 {
+    background-image: url("https://wallpaperaccess.com/full/920676.jpg");
+}
+
+.m2 {
+    background-image: url("https://wallpapercave.com/wp/wp6329951.jpg");
+}
+
+.m3 {
+    background-image: url("https://wallpapercave.com/wp/wp6329958.jpg");
+}
+
+/* CTA Final */
+.ctaCzn {
+    margin-top: 1rem;
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(90deg, var(--azul-3), var(--azul-4));
     border: 2px solid var(--azul-1);
-    color: var(--azul-1);
+    border-radius: 1rem;
 }
 
-.btn-secondary:hover {
-    background: var(--azul-1);
-    color: var(--branco);
-    transform: scale(1.05);
+.ctaCzn h2 {
+    font-size: 2.7rem;
+    margin-bottom: 1rem;
 }
 
-.hero-img {
-    width: 45%;
-    height: 320px;
-    border-radius: 14px;
-    background: url('https://images.unsplash.com/photo-1517602302552-471fe67acf66') center/cover no-repeat;
-    filter: brightness(.85);
-    animation: slideIn 1s ease forwards;
-}
-
-/* ------------------ HIGHLIGHTS ------------------ */
-
-.highlights {
-    padding: 60px 7%;
-    display: flex;
-    justify-content: space-between;
-    gap: 25px;
-}
-
-.highlight-card {
-    background: var(--cinza-2);
-    padding: 25px;
-    border-radius: 12px;
-    border: 1px solid var(--azul-4);
-    flex: 1;
-    text-align: center;
-    transition: .3s ease;
-}
-
-.highlight-card i {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: var(--azul-1);
-}
-
-.highlight-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
-}
-
-/* ------------------ COMO FUNCIONA ------------------ */
-
-.como-funciona {
-    padding: 70px 7%;
-    text-align: center;
-}
-
-.steps {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-}
-
-.step {
-    background: var(--cinza-2);
-    padding: 22px;
-    width: 32%;
-    border-radius: 12px;
-    border: 1px solid var(--azul-4);
-    transition: .3s;
-}
-
-.step span {
-    display: inline-block;
-    background: var(--azul-1);
-    padding: 10px 18px;
+.ctaCzn p {
     font-size: 1.2rem;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    margin-bottom: 2rem;
+    opacity: 0.9;
 }
 
-.step:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
-}
-
-/* ------------------ BENEFÍCIOS ------------------ */
-
-.beneficios {
-    padding: 70px 7%;
-    text-align: center;
-}
-
-.beneficios-grid {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-    gap: 25px;
-}
-
-.beneficio-item {
-    background: var(--cinza-2);
-    padding: 25px;
-    flex: 1;
-    border-radius: 12px;
-    border: 1px solid var(--azul-4);
-    transition: .3s;
-    text-align: center;
-}
-
-.beneficio-item i {
-    font-size: 2rem;
-    color: var(--azul-1);
-    margin-bottom: 10px;
-}
-
-.beneficio-item:hover {
-    transform: scale(1.05);
-}
-
-/* ------------------ FOOTER ------------------ */
-
-.footer {
-    text-align: center;
-    padding: 20px;
-    background: var(--cinza-2);
-    margin-top: 50px;
-}
-
-/* ------------------ ANIMAÇÕES ------------------ */
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* ---------------- RESPONSIVO ---------------- */
-
-@media (max-width: 900px) {
-    .hero {
+/* MOBILE */
+@media (max-width: 860px) {
+    .heroCzn {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
+        gap: 2rem;
+        padding: 2rem 1.2rem;
     }
 
-    .hero-img {
+    .heroImg {
         width: 100%;
-        height: 260px;
+        height: 300px;
     }
 
-    .highlights,
-    .steps,
-    .beneficios-grid {
-        flex-direction: column;
+    .heroContent h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* ================= HISTÓRIA ================= */
+.historiaCzn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 4rem 3rem;
+    max-width: 100%;
+}
+
+.historiaContent {
+    padding: 1rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 4rem;
+    border-bottom: 1px solid var(--azul-1);
+}
+
+.historiaContent:last-child{
+    border: none;
+}
+
+.historiaBox {
+    display: flex;
+    flex-direction: column;
+    max-width: 45%;
+    gap: 1.3rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+.historiaCzn h2 {
+    color: var(--azul-1);
+    font-size: 2.5rem;
+    margin-bottom: 1.4rem;
+    text-shadow: 0 0px 22px var(--azul-1);
+}
+
+.historiaImg:nth-child(1) {
+    width: 65%;
+    height: 420px;
+    border-radius: 1rem;
+    background: url("../src/assets/dev1.png") center/cover no-repeat;
+    box-shadow: 0 6px 26px rgba(0, 0, 0, .45);
+}
+
+.historiaImg:nth-child(2) {
+    width: 65%;
+    height: 420px;
+    border-radius: 1rem;
+    background: url("../src/assets/dev2.png") center/cover no-repeat;
+    box-shadow: 0 6px 26px rgba(0, 0, 0, .45);
+}
+
+
+/* ================= DESTAQUES PREMIUM — 3D ================= */
+.premiumCzn {
+    text-align: center;
+    padding: 4rem 3rem;
+}
+
+.premiumCzn h2 {
+    font-size: 2.6rem;
+}
+
+.descricaoPremium {
+    margin-top: .7rem;
+    opacity: .85;
+}
+
+.galeria3d {
+    padding: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card3d {
+    width: 320px;
+    height: 200px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 2px solid var(--azul-4);
+    transition: .4s;
+    color: var(--branco);
+    background-size: cover;
+    background-position: center;
+    transform: perspective(900px) rotateY(0deg);
+    text-shadow: 0px 0px 25px var(--preto);
+}
+
+.card3d:hover {
+    transform: perspective(900px) scale(1.04);
+    border-color: var(--azul-1);
+    box-shadow: 0 0 10px var(--branco);
+}
+
+.card3d:hover:last-child {
+    transform: perspective(1150px) rotateY(-10deg) scale(1.04);
+}
+
+.card3d:hover:first-child {
+    transform: perspective(1150px) rotateY(10deg) scale(1.04);
+}
+
+.mA {
+    background-image: url("https://c.ndtvimg.com/2024-10/6q06k87_honda-cb1000-hornet_625x300_16_October_24.jpg?im=FeatureCrop,algorithm=dnn,width=545,height=307");
+}
+
+.mB {
+    background-image: url("https://i.pinimg.com/736x/86/0f/e8/860fe8ab42d9cb97cc057879932c7db4.jpg");
+}
+
+.mC {
+    background-image: url("https://mcn-images.bauersecure.com/wp-images/4480/bmw_r1200gs_1.jpg");
+}
+
+.mD {
+    background-image: url("https://i.pinimg.com/1200x/43/04/13/430413da201a29f319e8f500b3b44d33.jpg");
+}
+
+.mE {
+    background-image: url("https://i.pinimg.com/1200x/7d/9d/2c/7d9d2cc6605a72afa55f5ea9aabaa4dc.jpg");
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 900px) {
+    .historiaCzn {
+        flex-direction: column-reverse;
+        text-align: center;
     }
 
-    .highlight-card,
-    .step,
-    .beneficio-item {
+    .historiaImg {
+        width: 100%;
+    }
+}
+
+.testimonial .headings {
+    margin-top: -5rem;
+    text-align: center;
+    color: #fff;
+}
+
+.testimonial .headings h1 {
+    font-size: 45px;
+    font-weight: 700;
+    color: var(--azul-1);
+}
+
+.testimonial .headings h2 {
+    font-size: 20px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* Card */
+.clients {
+    background: #17191f;
+    color: #fff;
+    padding: 30px;
+    border-radius: 18px;
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transition: .3s ease;
+    border: 1px solid transparent;
+}
+
+.clients:hover {
+    transform: translateY(-7px);
+    border: 1px solid var(--azul-1);
+    box-shadow: 0px 0px 18px rgba(0, 132, 255, 0.4);
+}
+
+/* Client profile */
+.client_det {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.client_img img {
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--azul-1);
+}
+
+.client_name h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.client_name p {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* Texto do depoimento */
+.swiper_pere {
+    font-size: 16px;
+    line-height: 1.6rem;
+    opacity: 0.9;
+}
+
+/* Swiper pagination */
+.testimonial_swiper .swiper-pagination-bullet {
+    background: #fff;
+    opacity: 0.4;
+}
+
+.testimonial_swiper .swiper-pagination-bullet-active {
+    background: var(--azul-1);
+    opacity: 1;
+}
+
+.clients {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Container geral */
+.testimonial {
+    width: 100%;
+    padding: 80px 0;
+    background: var(--preto);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+/* Para o swiper ter largura real */
+.testimonial_swiper {
+    width: 85%;
+    max-width: 1300px;
+    padding: 2rem;
+}
+
+/* O wrapper estava ficando comprimido porque os slides não tinham largura */
+.testimonial_swiper .swiper-slide {
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.swiper {
+    width: 100%;
+}
+
+.testimonial_swiper .swiper-slide {
+    width: 33%;
+}
+
+@media (max-width: 1024px) {
+    .testimonial_swiper .swiper-slide {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial_swiper .swiper-slide {
         width: 100%;
     }
 }

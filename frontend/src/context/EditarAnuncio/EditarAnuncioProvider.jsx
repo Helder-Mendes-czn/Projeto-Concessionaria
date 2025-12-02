@@ -19,7 +19,7 @@ export default function EditarAnuncioProvider({ children, usuario }) {
 
     const pegarDadosAnuncio = async () => {
         try {
-            const res = await fetch(`http://localhost:8002/anuncios/buscarPorId/${idAnuncio}`)
+            const res = await fetch(`http://localhost:1334/anuncios/buscarPorId/${idAnuncio}`)
             const data = await res.json();
             setAnuncio(data);
         } catch (error) {

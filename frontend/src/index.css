@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mako&display=swap');
 
 :root {
   --branco: #FFFFFF;
-
-  --azul-1: #0A84FF;   /* Azul vibrante / destaque */
-  --azul-2: #0066CC;   /* Azul forte / botões */
+  
+  --azul-1: #00bbff;   /* Azul vibrante / destaque */
+  --azul-2: #0A84FF;   /* Azul forte / botões */
   --azul-3: #004C99;   /* Azul médio */
   --azul-4: #003366;   /* Azul profundo / bordas */
 
-  --preto: #0f0f0f;
-  --cinza-1: #1a1a1a;
-  --cinza-2: #262626;
+  --preto: #121213;
+  --cinza-1: #25273d;
+  --cinza-2: #0a0b1073;
 
   --fonte-principal: "Inter", sans-serif;
+  --fonte-secundaria: "Mako", sans-serif;
 }
 
 body {

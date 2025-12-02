@@ -11,7 +11,7 @@ export default function Perfil({ usuario }) {
 
     const pegarDadosUser = async () => {
         try {
-            const res = await fetch(`http://localhost:4000/usuarios/${usuario.id}`)
+            const res = await fetch(`http://localhost:1330/usuarios/${usuario.id}`)
             const data = await res.json();
             setUser(data[0]);
         } catch (error) {
@@ -38,7 +38,7 @@ export default function Perfil({ usuario }) {
             let payload = { ...formulario };
             delete payload.data_criacao;
 
-            const res = await fetch(`http://localhost:4000/usuarios/editar/${usuario.id}`, {
+            const res = await fetch(`http://localhost:1330/usuarios/editar/${usuario.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

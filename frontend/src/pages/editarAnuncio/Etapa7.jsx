@@ -27,7 +27,7 @@ export default function Etapa7({ usuario }) {
         try {
             const token = localStorage.getItem("token");
 
-            const resMotoAndImagens = await fetch(`http://localhost:8001/motos/editar/${formulario.idMoto}`, {
+            const resMotoAndImagens = await fetch(`http://localhost:1331/motos/editar/${formulario.idMoto}`, {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -45,7 +45,7 @@ export default function Etapa7({ usuario }) {
                 descricao: formulario.descricao
             }
 
-            const resAnuncio = await fetch(`http://localhost:8002/anuncios/editar/${idAnuncio}`, {
+            const resAnuncio = await fetch(`http://localhost:1334/anuncios/editar/${idAnuncio}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

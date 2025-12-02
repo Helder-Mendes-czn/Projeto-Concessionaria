@@ -29,7 +29,7 @@ export default function Etapa8() {
         try {
             const token = localStorage.getItem("token");
 
-            const resMotoAndImagens = await fetch("http://localhost:8001/motos/cadastrar", {
+            const resMotoAndImagens = await fetch("http://localhost:1331/motos/cadastrar", {
                 method: "POST",
                 headers: { "Authorization": `Bearer ${token}` },
                 body: formData,
@@ -45,14 +45,14 @@ export default function Etapa8() {
                 descricao: formulario.descricao
             }
 
-            const resAnuncio = await fetch("http://localhost:8002/anuncios/cadastrar", {
+            const resAnuncio = await fetch("http://localhost:1334/anuncios/cadastrar", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
                 body: JSON.stringify(anuncioMoto),
             });
             const resultadoAnuncioMoto = await resAnuncio.json();
             resetarFormulario();
-            navigate('/')
+            navigate('/home')
             alert(resultadoAnuncioMoto.mensagem);
         } catch (error) {
             console.error("erro: \n\t", error);

@@ -28,7 +28,7 @@ export default function ContainerAnuncios() {
 
     const buscarAnuncios = async () => {
         try {
-            const res = await fetch("http://localhost:8002/anuncios/buscar");
+            const res = await fetch("http://localhost:1334/anuncios/buscar");
             const data = await res.json();
             setAnuncios(data);
         } catch (error) {
@@ -84,7 +84,7 @@ export default function ContainerAnuncios() {
             }
         });
 
-        const res = await fetch(`http://localhost:8002/anuncios/buscar?${params.toString()}`);
+        const res = await fetch(`http://localhost:1334/anuncios/buscar?${params.toString()}`);
         const data = await res.json();
         setAnuncios(data);
         // console.log("Anuncios filtrados:")
@@ -438,7 +438,7 @@ export default function ContainerAnuncios() {
                     <div key={item.anuncio.id_anuncio} className="cardMoto">
 
                         <img
-                            src={item.imagens?.[0] ? `http://localhost:8004/uploads/${item.imagens[0]}` : ""}
+                            src={item.imagens?.[0] ? `http://localhost:1333/uploads/${item.imagens[0]}` : ""}
                             alt={item.anuncio.modelo}
                         />
 

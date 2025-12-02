@@ -112,3 +112,15 @@
     padding: 1.5rem;
   }
 }
+
+.botaoEtapa{
+  color: var(--branco);
+  background-color: var(--azul-2);
+  margin-bottom: 1rem;
+  border: 1px solid var(--azul-1);
+}
+
+.botaoEtapa:hover{
+  background-color: var(--azul-4);
+  box-shadow: 0 0 10px var(--azul-1);
+}

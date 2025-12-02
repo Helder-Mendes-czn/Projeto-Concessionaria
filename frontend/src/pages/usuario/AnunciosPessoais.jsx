@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function AnunciosPessoais() {
   const [anuncios, setAnuncios] = useState([]);
@@ -7,7 +7,7 @@ export default function AnunciosPessoais() {
 
   const buscarAnuncios = async () => {
     try {
-      const res = await fetch(`http://localhost:8002/anuncios/usuario/${id}`)
+      const res = await fetch(`http://localhost:1334/anuncios/usuario/${id}`)
       const data = await res.json();
       setAnuncios(data);
     } catch (error) {
@@ -22,7 +22,7 @@ export default function AnunciosPessoais() {
   const deletarAnuncio = async (idAnuncio) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8002/anuncios/deletar/${idAnuncio}`, {
+      const res = await fetch(`http://localhost:1334/anuncios/deletar/${idAnuncio}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -40,13 +40,15 @@ export default function AnunciosPessoais() {
 
   return (
     <>
+      <h1>Meus anúncios</h1>
       <div className="container-card-anuncio">
+
         {anuncios.map((item) => (
           <div key={item.anuncio.id_anuncio} className="card-anuncio">
 
             <img
               className="card-img"
-              src={item.imagens?.[0] ? `http://localhost:8004/uploads/${item.imagens[0]}` : ""}
+              src={item.imagens?.[0] ? `http://localhost:1333/uploads/${item.imagens[0]}` : ""}
               alt={item.anuncio.modelo}
             />
 
@@ -72,9 +74,15 @@ export default function AnunciosPessoais() {
                 <h3>R$ {item.anuncio.preco}</h3>
               </div>
             </div>
-            <Link to={`/anuncios/moto/${item.anuncio.id_anuncio}`} className="card-botao">
-              Ver anúncio
-            </Link>
+            <div className="card-botoes">
+              <div>
+                <Link to={`/usuario/${id}/anuncios/editarAnuncio/${item.anuncio.id_anuncio}`} className="card-botao">Editar anúncio</Link>
+                <button onClick={() => { deletarAnuncio(item.anuncio.id_anuncio) }} className="card-botao card-botao-delete">Deletar anúncio</button>
+              </div>
+              <Link to={`/anuncios/moto/${item.anuncio.id_anuncio}`} className="card-botao">
+                Ver anúncio
+              </Link>
+            </div>
           </div>
         ))}
       </div>

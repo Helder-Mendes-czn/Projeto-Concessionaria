@@ -1,28 +1,9 @@
-/* ========================= */
-/*        VARIÁVEIS          */
-/* ========================= */
-
-:root {
-  --branco: #FFFFFF;
-
-  --azul-1: #0A84FF;   /* Azul vibrante / destaque */
-  --azul-2: #0066CC;   /* Azul forte / botões */
-  --azul-3: #004C99;   /* Azul médio */
-  --azul-4: #003366;   /* Azul profundo / bordas */
-
-  --preto: #0f0f0f;
-  --cinza-1: #202124;
-  --cinza-2: #292929;
-
-  --fonte-principal: "Inter", sans-serif;
-}
-
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--fonte-principal);
+  scroll-behavior: smooth;
 }
 
 /* ========================= */
@@ -113,6 +94,7 @@
   min-height: 75.8vh;
   animation: fadeIn .4s ease-in-out;
 }
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }

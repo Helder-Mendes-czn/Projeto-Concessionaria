@@ -17,7 +17,7 @@ function Login() {
 
     const logar = async () => {
         try {
-            const res = await fetch("http://localhost:4000/usuarios/login", {
+            const res = await fetch("http://localhost:1330/usuarios/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formulario),
@@ -25,10 +25,9 @@ function Login() {
 
             const resultado = await res.json();
             alert(resultado.mensagem);
-
             if (resultado.token) {
                 localStorage.setItem("token", resultado.token);
-                navigate("/");
+                navigate("/home");
             }
 
         } catch (error) {
