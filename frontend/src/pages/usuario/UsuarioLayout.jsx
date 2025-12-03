@@ -8,7 +8,7 @@ export default function UsuarioLayout({ usuario }) {
 
         <nav>
           <NavLink to="garagem">Favoritos</NavLink>
-          {usuario?.tipo === "Usuário Vendedor" && (<NavLink to={"/anuncios"}>Cadastrar Moto</NavLink>)}
+          {usuario?.tipo === "Usuário Vendedor" && (<NavLink to={`/usuario/${usuario.id}/anuncios`}>Meus anúncios</NavLink>)}
           <NavLink to="perfil">Perfil</NavLink>
         </nav>
       </aside>

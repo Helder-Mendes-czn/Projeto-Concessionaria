@@ -87,7 +87,9 @@ export default function Etapa7({ usuario }) {
                 <label htmlFor="valvulasPorCilindro">Valvúlas por Cilindro</label>
                 <input type="text" name="valvulasPorCilindro" value={formulario.valvulasPorCilindro} onChange={controlaEstado} />
             </div>
-            <button onClick={() => editarAnuncio()}>Salvar alterações</button>
+            <div className="btnsSalvamAlteracoes">
+                <button className="btnSalvaAltercoes" onClick={() => editarAnuncio()}>Salvar alterações</button>
+            </div>
         </>
     );
 }

@@ -23,6 +23,21 @@ import ContainerAnuncios from './pages/anunciosMoto/ContainerAnuncios.jsx';
 import AnuncioMoto from './pages/anunciosMoto/AnuncioMoto.jsx';
 import Home from './pages/Home.jsx';
 
+import { Navigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+
+// Sobrescreve ALERT() para virar toast automaticamente
+window.alert = (msg) => {
+  const texto = String(msg).toLowerCase();
+
+  if (texto.includes("erro"))
+    toast.error(msg);
+  else if (texto.includes("sucesso") || texto.includes("ok"))
+    toast.success(msg);
+  else
+    toast(msg);
+};
+
 const usuario = pegarUsuarioLogado();
 
 const router = createBrowserRouter([
@@ -31,8 +46,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "home",
         index: true,
+        element: <Navigate to="/home" replace />
+      },
+      {
+        path: "home",
         element: <Home />
       },
       {
@@ -94,5 +112,25 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Toaster
+      position="top-right"
+      toastOptions={{
+        className: "",
+        duration: 3000,
+        style: {
+          border: "1px solid var(--azul-1)",
+          background: "var(--cinza-1)",
+          color: "var(--branco)",
+          fontFamily: "var(--fonte-principal)",
+          borderRadius: "10px",
+        },
+        success: {
+          className: "hot-toast-success",
+        },
+        error: {
+          className: "hot-toast-error",
+        },
+      }}
+    />
   </StrictMode>,
 )

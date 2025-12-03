@@ -1,0 +1,8 @@
+﻿Helder Nelson Carvalho Mendes
+
+
+Abra a pasta “frontend”, instale as dependências, e rode com NPM RUN DEV;
+Abra a pasta “backend”, instale as dependências, e rode NODE –watch server.js
+Dentro da pasta “backend” abra o arquivo mySql2.js e adicione sua senha do banco de dados;
+
+Feito isso acesse e explore o site normalmente.

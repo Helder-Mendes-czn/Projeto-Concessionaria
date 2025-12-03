@@ -1,4 +1,4 @@
-import pool from "../mySql2.js";
+import pool from './mySql2.js';
 import translate from "google-translate-api-x";
 
 const campos = [

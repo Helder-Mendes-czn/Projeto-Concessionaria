@@ -4,7 +4,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import pool from '../mySql2.js';
+import pool from './mySql2.js';
 
 dotenv.config();
 

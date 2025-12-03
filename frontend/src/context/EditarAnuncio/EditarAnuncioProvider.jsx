@@ -21,7 +21,7 @@ export default function EditarAnuncioProvider({ children, usuario }) {
         try {
             const res = await fetch(`http://localhost:1334/anuncios/buscarPorId/${idAnuncio}`)
             const data = await res.json();
-            setAnuncio(data);
+            setAnuncio(data[0].anuncio);
         } catch (error) {
             console.error("error: \n\t", error);
         }
@@ -76,7 +76,6 @@ export default function EditarAnuncioProvider({ children, usuario }) {
             corPrincipal: a.cor_principal,
             corSecundaria: a.cor_secundaria,
             localizacao: a.localizacao,
-            imagens: a.imagens || [],
         };
     }
 

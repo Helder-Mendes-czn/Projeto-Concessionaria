@@ -198,12 +198,12 @@ function AnuncioMoto() {
                                     <h5>{dadosAnuncio[0].anuncio.partida}</h5>
                                 </div>
                                 <div>
-                                    <h6>Freio dianteiro</h6>
-                                    <h5>{dadosAnuncio[0].anuncio.freios_dianteiros}</h5>
+                                    <h6>Freios</h6>
+                                    <h5>{dadosAnuncio[0].anuncio.freios}</h5>
                                 </div>
                                 <div>
-                                    <h6>Freio traseiro</h6>
-                                    <h5>{dadosAnuncio[0].anuncio.freios_traseiros}</h5>
+                                    <h6>Cor principal</h6>
+                                    <h5>{dadosAnuncio[0].anuncio.cor_principal}</h5>
                                 </div>
                                 <div>
                                     <h6>Alimentação</h6>

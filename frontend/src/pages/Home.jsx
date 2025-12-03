@@ -82,7 +82,7 @@ export default function Home() {
                         <span>Planos de financiamento diferenciados</span>
                     </div>
                     <div className="cardP">
-                        <i class="fa-solid fa-truck-fast"></i>
+                        <i className="fa-solid fa-truck-fast"></i>
                         <span>Entrega rápida, segura, otimizada eficiente</span>
                     </div>
                 </div>
@@ -142,6 +142,21 @@ export default function Home() {
                                 </div>
                             </div>
                             <p className="swiper_pere">"O atendimento foi excepcional! Encontrei a moto perfeita e a equipe fez de tudo para agilizar o financiamento. Recomendo 100%!"</p>
+                        </div>
+                    </SwiperSlide>
+
+                    <SwiperSlide key="abc1">
+                        <div className="clients">
+                            <div className="client_det">
+                                <div className="client_img">
+                                    <img src="./../../src/assets/profile2.jpeg" alt="Foto de Alice Francoso" />
+                                </div>
+                                <div className="client_name">
+                                    <h2>Alice Francoso</h2>
+                                    <p>Aventureira</p>
+                                </div>
+                            </div>
+                            <p className="swiper_pere">"Comprei uma trail para minhas viagens e a moto é fantástica. A consultoria sobre os modelos foi muito útil, superando minhas expectativas."</p>
                         </div>
                     </SwiperSlide>
 
@@ -221,20 +236,7 @@ export default function Home() {
                             <p className="swiper_pere">"Precisava de uma peça específica para minha custom e eles encontraram rapidamente. Estoque diversificado e peças originais garantidas."</p>
                         </div>
                     </SwiperSlide>
-                    <SwiperSlide key="abc1">
-                        <div className="clients">
-                            <div className="client_det">
-                                <div className="client_img">
-                                    <img src="./../../src/assets/profile2.jpeg" alt="Foto de Maria Eduarda" />
-                                </div>
-                                <div className="client_name">
-                                    <h2>Maria Eduarda</h2>
-                                    <p>Aventureira</p>
-                                </div>
-                            </div>
-                            <p className="swiper_pere">"Comprei uma trail para minhas viagens e a moto é fantástica. A consultoria sobre os modelos foi muito útil, superando minhas expectativas."</p>
-                        </div>
-                    </SwiperSlide>
+                    
                 </Swiper>
             </section>
 

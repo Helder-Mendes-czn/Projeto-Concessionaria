@@ -29,7 +29,6 @@ export default function MotoCadastroProvider({ children, usuario }) {
 
     const resetarFormulario = () => {
         setFormulario({
-            // idUsuario: usuario.id,
             preco: "",
             descricao: "",
             marca: "",

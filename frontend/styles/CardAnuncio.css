@@ -96,8 +96,8 @@
 /*         PREÇO           */
 /* ======================= */
 
+
 .card-preco h3 {
-    margin-top: 12px;
     font-size: 1.2rem;
     color: var(--azul-1);
     font-weight: 600;
@@ -121,7 +121,7 @@
 }
 
 .card-botao {
-    margin: 1rem auto;
+    margin: auto;
     display: block;
     text-align: center;
     background: var(--azul-2);

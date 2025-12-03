@@ -14,12 +14,33 @@ export default function Etapa1() {
                 <input type="text" id="marca" name="marca" value={formulario.marca} onChange={controlaEstado} required />
                 <label htmlFor="modelo">Modelo *</label>
                 <input type="text" id="modelo" name="modelo" value={formulario.modelo} onChange={controlaEstado} required />
-                <div>
-                    <label htmlFor="anoModelo">Ano modelo *</label>
-                    <input type="text" name="anoModelo" value={formulario.anoModelo} onChange={controlaEstado} required />
-                    <label htmlFor="anoFabricacao">Ano Fabricação *</label>
-                    <input type="text" name="anoFabricacao" value={formulario.anoFabricacao} onChange={controlaEstado} required />
-                </div>
+                <div className="cadastroMoto-dupla">
+
+                            <div>
+                                <label htmlFor="anoModelo">Ano modelo *</label>
+                                <input
+                                    type="text"
+                                    id="anoModelo"
+                                    name="anoModelo"
+                                    value={formulario.anoModelo}
+                                    onChange={controlaEstado}
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="anoFabricacao">Ano Fabricação *</label>
+                                <input
+                                    type="text"
+                                    id="anoFabricacao"
+                                    name="anoFabricacao"
+                                    value={formulario.anoFabricacao}
+                                    onChange={controlaEstado}
+                                    required
+                                />
+                            </div>
+
+                        </div>
                 <select name="estilo" value={formulario.estilo} onChange={controlaEstado}>
                     <option value="">Selecione o Estilo</option>
                     <option value="Ciclomotor">Ciclomotor</option>

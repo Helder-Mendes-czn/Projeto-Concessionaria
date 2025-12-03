@@ -52,38 +52,38 @@ export default function Perfil({ usuario }) {
 
     return (
         <>
-            <h1 class="perfil-titulo">Meu perfil</h1>
+            <h1 className="perfil-titulo">Meu perfil</h1>
 
-            <div class="perfil-container">
-                <div class="perfil-box">
-                    <form class="perfil-form" onSubmit={submeterAlteracoes}>
-                        <h2 class="perfil-subtitulo">Meus dados</h2>
+            <div className="perfil-container">
+                <div className="perfil-box">
+                    <form className="perfil-form" onSubmit={submeterAlteracoes}>
+                        <h2 className="perfil-subtitulo">Meus dados</h2>
 
-                        <label htmlFor="nome" class="perfil-label">Nome</label>
-                        <input type="text" class="perfil-input" name="nome" value={formulario.nome} onChange={controlaEstado} required />
+                        <label htmlFor="nome" className="perfil-label">Nome</label>
+                        <input type="text" className="perfil-input" name="nome" value={formulario.nome} onChange={controlaEstado} required />
 
-                        <label htmlFor="usuario" class="perfil-label">Usuário</label>
-                        <input type="text" class="perfil-input" name="usuario" value={formulario.usuario} onChange={controlaEstado} required />
+                        <label htmlFor="usuario" className="perfil-label">Usuário</label>
+                        <input type="text" className="perfil-input" name="usuario" value={formulario.usuario} onChange={controlaEstado} required />
 
-                        <select class="perfil-select" name="tipo" value={formulario.tipo} onChange={controlaEstado} required>
+                        <select className="perfil-select" name="tipo" value={formulario.tipo} onChange={controlaEstado} required>
                             <option value="" disabled hidden>Selecione o tipo de usuário</option>
                             <option value="Usuário Comum">Usuário Comum</option>
                             <option value="Usuário Vendedor">Usuário Vendedor</option>
                         </select>
 
-                        <label htmlFor="email" class="perfil-label">Email</label>
-                        <input type="text" class="perfil-input" name="email" value={formulario.email} onChange={controlaEstado} required />
+                        <label htmlFor="email" className="perfil-label">Email</label>
+                        <input type="text" className="perfil-input" name="email" value={formulario.email} onChange={controlaEstado} required />
 
-                        <label htmlFor="telefone" class="perfil-label">Telefone</label>
-                        <input type="text" class="perfil-input" name="telefone" value={formulario.telefone} onChange={controlaEstado} required />
+                        <label htmlFor="telefone" className="perfil-label">Telefone</label>
+                        <input type="text" className="perfil-input" name="telefone" value={formulario.telefone} onChange={controlaEstado} required />
 
-                        <select class="perfil-select" name="status" value={formulario.status} onChange={controlaEstado} required>
+                        <select className="perfil-select" name="status" value={formulario.status} onChange={controlaEstado} required>
                             <option value="" disabled hidden>Selecione o status da conta</option>
                             <option value="ativo">Ativo</option>
                             <option value="inativo">Inativo</option>
                         </select>
 
-                        <button type="submit" class="perfil-botao">Salvar alterações</button>
+                        <button type="submit" className="perfil-botao">Salvar alterações</button>
                     </form>
                 </div>
             </div>

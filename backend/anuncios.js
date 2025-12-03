@@ -1,8 +1,8 @@
-import autenticarToken from "../frontend/src/middleware/autenticarToken.js";
+import autenticarToken from './middleware/autenticarToken.js'
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import pool from '../mySql2.js';
+import pool from './mySql2.js';
 
 const app = express();
 app.use(bodyParser.json());
@@ -28,16 +28,16 @@ app.get('/anuncios/buscar', async (req, res) => {
         }
 
         if (filtros.ano) {
-            condicoes.push("m.ano = ?");
+            condicoes.push("m.ano_modelo = ?");
             valores.push(filtros.ano);
         }
 
         if (filtros.ano_min) {
-            condicoes.push("m.ano >= ?");
+            condicoes.push("m.ano_modelo >= ?");
             valores.push(filtros.ano_min);
         }
         if (filtros.ano_max) {
-            condicoes.push("m.ano <= ?");
+            condicoes.push("m.ano_modelo <= ?");
             valores.push(filtros.ano_max);
         }
 
@@ -119,7 +119,7 @@ app.get('/anuncios/buscar', async (req, res) => {
 app.get("/anuncios/buscarPorId/:id", async (req, res) => {
     try {
         let id = req.params.id;
-        let sqlAnuncio = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.quilometragem,m.cor_principal,m.cor_secundaria,m.ano_fabricacao, m.ano_modelo,m.pneu_dianteiro,m.pneu_traseiro,m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, u.nome as nome_usuario, u.email as email_usuario, u.telefone as telefone_usuario, u.tipo as tipo_usuario FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo' AND a.id = ?`;
+        let sqlAnuncio = `SELECT a.id AS id_anuncio, a.preco, a.localizacao, a.descricao, a.data_publicacao, a.status,m.id AS id_moto,m.marca,m.modelo,m.ano,m.estilo,m.cilindrada,m.motor,m.potencia,m.torque,m.taxa_compressao,m.diametro_curso,m.valvulas_por_cilindro,m.alimentacao,m.comando_combustivel,m.ignicao,m.lubrificacao,m.refrigeracao,m.caixa_marchas,m.transmissao,m.embreagem,m.quadro,m.suspensao_dianteira,m.curso_roda_dianteira,m.suspensao_traseira,m.curso_roda_traseira,m.quilometragem,m.cor_principal,m.cor_secundaria,m.ano_fabricacao, m.ano_modelo,m.pneu_dianteiro,m.pneu_traseiro,m.freios, m.freios_dianteiros,m.freios_traseiros,m.peso_total,m.altura_assento,m.altura_total,m.comprimento_total,m.largura_total,m.distancia_solo,m.entre_eixos,m.capacidade_combustivel,m.partida, u.nome as nome_usuario, u.email as email_usuario, u.telefone as telefone_usuario, u.tipo as tipo_usuario FROM anuncio a JOIN moto m ON a.id_moto = m.id JOIN usuario u ON a.id_usuario = u.id WHERE a.status = 'ativo' AND a.id = ?`;
 
         const [anuncios] = await pool.execute(sqlAnuncio, [id]);
 

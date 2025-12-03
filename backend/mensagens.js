@@ -1,8 +1,8 @@
-import autenticarToken from "../frontend/src/middleware/autenticarToken.js";
+import autenticarToken from './middleware/autenticarToken.js'
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import pool from '../mySql2.js';
+import pool from './mySql2.js';
 
 const app = express();
 app.use(bodyParser.json());

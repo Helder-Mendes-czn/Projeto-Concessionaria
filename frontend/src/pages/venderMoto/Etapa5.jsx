@@ -34,7 +34,7 @@ export default function Etapa5() {
                         <input type="text" name="cursoRodaTraseira" value={formulario.cursoRodaTraseira} onChange={controlaEstado} />
                         <label htmlFor="freios">Freios</label>
                         <select name="freios" value={formulario.freios} onChange={controlaEstado}>
-                            <option value="" disabled hidden>Selecione o tipo de freios</option>
+                            <option value="" disabled>Selecione o tipo de freios</option>
                             <option value="disc / disc">Disco / Disco</option>
                             <option value="brake / disc">Tambor / Disco</option>
                             <option value="disc / brake">Disco / Tambor</option>

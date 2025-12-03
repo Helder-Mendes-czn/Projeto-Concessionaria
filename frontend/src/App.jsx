@@ -9,10 +9,12 @@ import '../styles/ContainerAnuncios.css';
 import '../styles/UsuarioLayout.css';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { pegarUsuarioLogado } from "./helper/auth.js";
+import { useEffect } from 'react';
 
 function App() {
   const usuario = pegarUsuarioLogado();
   const navigate = useNavigate();
+  
   return (
     <>
       <nav className='navApp'>
@@ -21,13 +23,18 @@ function App() {
         </div>
 
         <div className='divNavApp'>
+          <Link to={"/home"}>Início</Link>
           <Link to={"/anuncios"}>Anúncios Motos</Link>
           <Link to={"/login"}>Login</Link>
           {usuario?.tipo === "Usuário Vendedor" && (<Link to={"/anuncios/venderMoto"}>Cadastrar Moto</Link>)}
         </div>
 
         <div className='divNavApp'>
-          <Link className='linkNavUser' to={`/usuario/${usuario.id}`}><i className="fa-solid fa-circle-user"></i><h4>{usuario.usuario}</h4></Link>
+          {
+            usuario ?
+              (<Link className='linkNavUser' to={`/usuario/${usuario.id}`}><i className="fa-solid fa-circle-user"></i><h4>{usuario.usuario}</h4></Link>) :
+              (<Link className='linkNavUser' to={"/login"}><i className="fa-solid fa-circle-user"></i><h4>Entrar</h4></Link>)
+          }
         </div>
       </nav>
 
@@ -60,7 +67,11 @@ function App() {
               </div>
               <div>
                 {usuario?.tipo === "Usuário Vendedor" && (<Link to={"/anuncios/venderMoto"}>Cadastrar Moto</Link>)}
-                <Link to={`/usuario/${usuario.id}`} className='linkPerfil'><i className="fa-solid fa-circle-user"></i><h4>{usuario.usuario}</h4></Link>
+                {
+                  usuario ?
+                    (<Link className='linkNavUser' to={`/usuario/${usuario.id}`}><i className="fa-solid fa-circle-user"></i><h4>{usuario.usuario}</h4></Link>) :
+                    (<Link className='linkNavUser' to={"/login"}><i className="fa-solid fa-circle-user"></i><h4>Entrar</h4></Link>)
+                }
               </div>
             </div>
           </div>

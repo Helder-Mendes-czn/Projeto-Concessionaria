@@ -3,14 +3,14 @@ import EditarAnuncioContext from "../../context/EditarAnuncio/EditarAnuncioConte
 
 export default function Etapa3() {
     const {formulario, controlaEstado} = useContext(EditarAnuncioContext);
-    console.log(formulario.caixaMarchas)
+    console.log(formulario.alimentacao)
 
     return (
         <>
             <div>
                 <h2>Preencha os dados do véiculo</h2>
-                <select name="alimentacao">
-                    <option value="" disabled hidden>Alimentacao</option>
+                <select name="alimentacao" value={formulario.alimentacao} onChange={controlaEstado}>
+                    <option value="">Alimentacao</option>
                     <option value="Carburettor">Carburador</option>
                     <option value="Injection">Injeção eletrônica</option>
                 </select>

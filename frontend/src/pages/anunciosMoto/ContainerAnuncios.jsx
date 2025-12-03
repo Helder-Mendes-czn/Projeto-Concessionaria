@@ -87,11 +87,6 @@ export default function ContainerAnuncios() {
         const res = await fetch(`http://localhost:1334/anuncios/buscar?${params.toString()}`);
         const data = await res.json();
         setAnuncios(data);
-        // console.log("Anuncios filtrados:")
-        // console.log("com os filtros", filtros)
-        // data.forEach(moto => {
-        //     console.log(`\tid_anuncio: ${moto.id_anuncio},\n\tmarca:${moto.marca},\n\tmodelo: ${moto.modelo},\n\tfreios_dianteiros: ${moto.freios_dianteiros},\n\tfreios_traseiros: ${moto.freios_traseiros}`)
-        // });
     };
 
     useEffect(() => {
@@ -196,15 +191,15 @@ export default function ContainerAnuncios() {
                         </div>
                         <h5>Ou escolha um ano específico</h5>
                         <div className="filtrosBtnsAux">
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2025" }))}>2025</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2024" }))}>2024</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2023" }))}>2023</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2022" }))}>2022</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2021" }))}>2021</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2020" }))}>2020</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2019" }))}>2019</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2018" }))}>2018</span>
-                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano_max: "2017" }))}>2017</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2025" }))}>2025</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2024" }))}>2024</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2023" }))}>2023</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2022" }))}>2022</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2021" }))}>2021</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2020" }))}>2020</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2019" }))}>2019</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2018" }))}>2018</span>
+                            <span className="filtrosBtnAux" onClick={() => setFiltros((p) => ({ ...p, ano: "2017" }))}>2017</span>
                         </div>
                     </div>
                 </div>
